@@ -30,15 +30,29 @@ public class GenerateObstacles : MonoBehaviour
         
 
         foreach (var obstacleRow in obstacleRows)
-        {
-            List<Transform> obstaclePositions = new List<Transform>(obstacleRow.GetComponentsInChildren<Transform>());
-            int randomObstacleAmount = Random.Range(1, 3); // Randomly choose between 1 and 2 obstacles
+        {   
+            List<Transform> obstaclePositions = obstacleRow
+            .GetComponentsInChildren<Transform>()
+            .Where(t =>
+                t != obstacleRow.transform &&
+                t.CompareTag("ObstacleNode") &&
+                t.childCount == 0
+            )
+            .ToList();
+
+        int randomObstacleAmount = Random.Range(1, 3);
 
             for (int i = 0; i < randomObstacleAmount; i++)
             {
-                Transform randomObstaclePosition = obstaclePositions[Random.Range(0, obstaclePositions.Count)];
+                if (obstaclePositions.Count == 0)
+                break;
 
-                PlaceObstacle(randomObstaclePosition);
+            int randomIndex = Random.Range(0, obstaclePositions.Count);
+            Transform randomObstaclePosition = obstaclePositions[randomIndex];
+
+            PlaceObstacle(randomObstaclePosition);
+
+            obstaclePositions.RemoveAt(randomIndex);
             }
         }
     }

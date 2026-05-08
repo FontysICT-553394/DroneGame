@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   trackSegmentPrefab: {fileID: 2509928707660706322, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
   generateObstacles: {fileID: 443953988}
-  trackSegmentAmount: 3
+  trackSegmentAmount: 4
   trackSegmentCounter: 1
   trackSegmentLength: -63.1
 --- !u!1 &638756715
@@ -246,7 +246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &638756716
 AudioListener:
   m_ObjectHideFlags: 0
@@ -314,13 +314,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638756715}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.012872954, y: -0.70698965, z: -0.012872978, w: 0.70698965}
-  m_LocalPosition: {x: 33.8, y: 4.9, z: -4.2}
+  m_LocalRotation: {x: 0.030843573, y: -0.7064338, z: 0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 33.79, y: 4.7, z: -4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -2.086, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 5, y: -90, z: 0}
 --- !u!114 &638756719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &732286453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +496,7 @@ Transform:
   m_GameObject: {fileID: 732286452}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3622234, y: -0.40480813, z: 0.1787423, w: 0.82035106}
-  m_LocalPosition: {x: 268, y: 373, z: -205}
+  m_LocalPosition: {x: 57.5, y: 80.6, z: -45.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -735,8 +735,8 @@ Transform:
   m_GameObject: {fileID: 1826166155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.64851, y: -3.9, z: -2.88}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 88.9, y: -3.9, z: -2.88}
+  m_LocalScale: {x: 1, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -782,9 +782,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2283655130386058178, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
-      propertyPath: m_Constraints
-      value: 112
+    - target: {fileID: 1481362384732509549, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35000014
       objectReference: {fileID: 0}
     - target: {fileID: 2509928707660706322, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
       propertyPath: m_Name
@@ -793,6 +793,18 @@ PrefabInstance:
     - target: {fileID: 2509928707660706322, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2677036261569201215, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35000014
+      objectReference: {fileID: 0}
+    - target: {fileID: 4243632614191109885, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35000014
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159178413526326563, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35000014
       objectReference: {fileID: 0}
     - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
       propertyPath: m_LocalPosition.x
@@ -833,6 +845,10 @@ PrefabInstance:
     - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220279997222914994, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
