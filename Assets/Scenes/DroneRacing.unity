@@ -119,6 +119,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &443953986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 443953987}
+  - component: {fileID: 443953988}
+  m_Layer: 0
+  m_Name: ObstacleGeneration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &443953987
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443953986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1949865334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443953988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443953986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174d83456088dff4f9ad7899988c0b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  obstacleRockPrefab: {fileID: 4831545594338945855, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+  racingTrackGenerator: {fileID: 599172470}
 --- !u!1 &599172467
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,8 +223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27dd3f56a923884480d4cb1d027450a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  trackSegmentPrefab: {fileID: 2338969590722979110, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-  trackSegmentAmount: 5
+  trackSegmentPrefab: {fileID: 2509928707660706322, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+  generateObstacles: {fileID: 443953988}
+  trackSegmentAmount: 3
   trackSegmentCounter: 1
   trackSegmentLength: -63.1
 --- !u!1 &638756715
@@ -267,13 +314,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638756715}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11670625, y: -0.6974093, z: 0.11670625, w: 0.6974093}
-  m_LocalPosition: {x: 35.8, y: 8.8, z: -4.4}
+  m_LocalRotation: {x: -0.012872954, y: -0.70698965, z: -0.012872978, w: 0.70698965}
+  m_LocalPosition: {x: 33.8, y: 4.9, z: -4.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 19, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.086, y: -90, z: 0}
 --- !u!114 &638756719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,67 +502,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1571879108
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2338969590722979110, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_Name
-      value: DroneRacingTrack
-      objectReference: {fileID: 0}
-    - target: {fileID: 2338969590722979110, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116034506600726428, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a5c6542dae7ac5e4eb79a2aacca5b3c9, type: 3}
 --- !u!1 &1593757445
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,8 +735,8 @@ Transform:
   m_GameObject: {fileID: 1826166155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 95.64851, y: -0, z: -2.88}
-  m_LocalScale: {x: 1, y: 3, z: 3}
+  m_LocalPosition: {x: 95.64851, y: -3.9, z: -2.88}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -785,8 +771,135 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 599172468}
+  - {fileID: 443953987}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &646542366002818340
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2283655130386058178, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509928707660706322, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_Name
+      value: DroneRacingTrackPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2509928707660706322, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5245266529800013230, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 987cf61ce504eed4cad5c9276345e382, type: 3}
+--- !u!1001 &6263008419252252815
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4831545594338945855, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_Name
+      value: DroneObstacleRock
+      objectReference: {fileID: 0}
+    - target: {fileID: 4831545594338945855, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.209085
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -22.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208071785578066309, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -796,4 +909,5 @@ SceneRoots:
   - {fileID: 1949865334}
   - {fileID: 1826166159}
   - {fileID: 732286456}
-  - {fileID: 1571879108}
+  - {fileID: 6263008419252252815}
+  - {fileID: 646542366002818340}

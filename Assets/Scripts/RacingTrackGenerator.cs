@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class RacingTrackGenerator : MonoBehaviour
     
 
     [SerializeField] private GameObject trackSegmentPrefab;
+    [SerializeField] private GenerateObstacles generateObstacles;
     public List<GameObject> TrackSegments => trackSegments;
     private List<GameObject> trackSegments = new List<GameObject>();
     public int trackSegmentAmount = 5;
@@ -25,8 +27,8 @@ public class RacingTrackGenerator : MonoBehaviour
     private void AddTrackSegment()
     {
         GameObject newTrackSegment = Instantiate(trackSegmentPrefab, new Vector3(trackSegments.Count * trackSegmentLength, 0f, 0f), Quaternion.identity);
-        Debug.Log("Instantiated new track segment at position: " + newTrackSegment.transform.position);
         trackSegments.Add(newTrackSegment);
+        generateObstacles.GetAllObstacleSegments(newTrackSegment);
     }
 
     void Update()
@@ -46,7 +48,6 @@ public class RacingTrackGenerator : MonoBehaviour
 
         for (trackSegmentCounter = trackSegments.Count; trackSegmentCounter < trackSegmentAmount; trackSegmentCounter++)
         {
-            Debug.Log("Adding track segment: " + trackSegmentCounter);
             AddTrackSegment();
         }
     }

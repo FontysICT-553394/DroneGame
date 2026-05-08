@@ -22,7 +22,7 @@ public class DestoryRacingTrack : MonoBehaviour
 
         if (currentTrackSegment == null) return;
 
-        currentTrackSegmentCollider = currentTrackSegment.GetComponent<Collider>();
+        currentTrackSegmentCollider = currentTrackSegment.GetComponentInChildren<Collider>();
 
         if (destroyeTrackTriggerCollider.bounds.Intersects(currentTrackSegmentCollider.bounds))
         {
