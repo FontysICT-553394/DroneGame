@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6471813192283600858}
   - component: {fileID: 4843318233944261644}
   m_Layer: 0
-  m_Name: Drone
+  m_Name: PlayerSim
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
