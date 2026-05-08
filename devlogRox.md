@@ -32,3 +32,6 @@ Ik heb vandaag geleerd hoe je een lopende track maakt waarbij je constant de eer
 
 ## Volgende stap
 De volgende stap is het neerzetten van obstakels op de track die worden random op de tracks gezet. 
+
+## Extra werk in de avond 
+In de avond heb ik nog thuis gewerkt aan de obstacles, ik heb nu een soort obstacle werkend, de logica zit er ook helemaal achter. Ik ben ook begonnen aan een asset die ervoor gaat zorgen dat de speler ook obstakels in de lucht heeft waardoor hij niet altijd over iets heen kan vliegen. De volgende stap gaat nu zijn om meer assets te maken die zullen dienen als obstacles en een dummy player om te kunnen beginnen aan movement logica en vanuit daar een death systeem bij het raken van een obstakel.
