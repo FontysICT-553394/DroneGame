@@ -36,6 +36,7 @@ De volgende stap is het neerzetten van obstakels op de track die worden random o
 ## Extra werk in de avond 
 In de avond heb ik nog thuis gewerkt aan de obstacles, ik heb nu een soort obstacle werkend, de logica zit er ook helemaal achter. Ik ben ook begonnen aan een asset die ervoor gaat zorgen dat de speler ook obstakels in de lucht heeft waardoor hij niet altijd over iets heen kan vliegen. De volgende stap gaat nu zijn om meer assets te maken die zullen dienen als obstacles en een dummy player om te kunnen beginnen aan movement logica en vanuit daar een death systeem bij het raken van een obstakel.
 
+----------------------------------------------------------------------
 # Devlog 2 - Roksana
 
 ## Datum 
@@ -53,3 +54,29 @@ In de avond heb ik nog thuis gewerkt aan de obstacles, ik heb nu een soort obsta
 
 ## Wat heb ik gedaan? 
 - Ik heb de lucht obstakel model afgemaakt en deze geimplementeerd zodat de drone niet over elke ground obstacle heen kan vliegen. 
+- player movement gemaakt 
+- Scherm die toont dat de drone uit het speelveld is. 
+- Battery model die een soort currency is waarmee je punten verdient 
+- score systeem 
+- generation systeem aangepast op batteries die spawnen op lege nodes. 
+
+## Waarom deze aanpak? 
+- Ik heb ervoor gekozen om al snel score toe te voegen omdat je dan automatisch in de game gaat voor de batterijen pakken zo heb je een duidelijke doel, de game is nu klaar om bijvoorbeeld getest te worden. 
+- Ik heb ervoor gekozen om toch geen death logic toe toe voegen omdat dit makkelijk is te implementeren en het nu toch zou worden gemaakt en meteen uitgezet. 
+
+## Problemen
+- Ik had vandaag redelijk wat problemen door mijn models, ik wou models met losse onderdelen zodat ze konden bewegen en dit had de pivot point van de model erg verschoven waardoor mijn model niet netjes op de node wou komen. 
+
+## Oplossing
+- Na wat te hebben gekeken naar mogelijkheden heb ik toch besloten om mijn models aan te passen en voor nu zonder animation te laten, ik ga hier later in development mee aan de slag aangezien het een "nice to have" onderdeel is. 
+
+## Resultaten 
+- Na werk van vandaag is de game helemaal speelbaar, het kan worden getoont aan de opdrachtgevers. 
+
+## Reflectie 
+- Ik heb vandaag veel kunnen oefenen met animeren en ik heb een aantal nieuwe inzichten gekregen in unity logica, zoals bijvoorbeeld gebruik van hashsets om alleen unieke node positions op te slaan. 
+
+## Volgende stap
+Als volgt ga ik werken aan het verfijnen van mijn obstakel logic die nu op elke node die leeg is een batterij zet, ik wil graag dast het ook een randomized aspect heeft. Ik wil ook graag nieuwe ground obstacles en air obstacles. Het zou ook leuk zijn als ik de finish kan maken. 
+
+s

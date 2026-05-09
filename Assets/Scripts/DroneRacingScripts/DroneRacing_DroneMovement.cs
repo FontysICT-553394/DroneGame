@@ -16,7 +16,6 @@ public class DroneMovemetnRacingDrone : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         movementInput = context.ReadValue<Vector2>();
-        Debug.Log($"Move: {movementInput}");
     }
 
 

@@ -26,9 +26,25 @@ public class RacingTrackGenerator : MonoBehaviour
 
     private void AddTrackSegment()
     {
-        GameObject newTrackSegment = Instantiate(trackSegmentPrefab, new Vector3(trackSegments.Count * trackSegmentLength, 0f, 0f), Quaternion.identity);
+        Debug.Log("AddTrackSegment called");
+
+        GameObject newTrackSegment = Instantiate(
+            trackSegmentPrefab,
+            new Vector3(trackSegments.Count * trackSegmentLength, 0f, 0f),
+            Quaternion.identity
+        );
+
         trackSegments.Add(newTrackSegment);
-        generateObstacles.GetAllObstacleSegments(newTrackSegment);
+
+        if (generateObstacles == null)
+        {
+            Debug.LogError("GenerateObstacles reference is NULL in inspector!");
+            return;
+        }
+
+        Debug.Log("Calling GenerateObstaclesForTrack on: " + newTrackSegment.name);
+
+        generateObstacles.GenerateObstaclesForTrack(newTrackSegment);
     }
 
     void Update()

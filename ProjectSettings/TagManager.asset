@@ -8,6 +8,8 @@ TagManager:
   - ObstacleNode
   - AirObstacleRow
   - AirObstacleNode
+  - Obstacle
+  - Currency
   layers:
   - Default
   - TransparentFX
