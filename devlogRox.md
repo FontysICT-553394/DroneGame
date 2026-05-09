@@ -35,3 +35,21 @@ De volgende stap is het neerzetten van obstakels op de track die worden random o
 
 ## Extra werk in de avond 
 In de avond heb ik nog thuis gewerkt aan de obstacles, ik heb nu een soort obstacle werkend, de logica zit er ook helemaal achter. Ik ben ook begonnen aan een asset die ervoor gaat zorgen dat de speler ook obstakels in de lucht heeft waardoor hij niet altijd over iets heen kan vliegen. De volgende stap gaat nu zijn om meer assets te maken die zullen dienen als obstacles en een dummy player om te kunnen beginnen aan movement logica en vanuit daar een death systeem bij het raken van een obstakel.
+
+# Devlog 2 - Roksana
+
+## Datum 
+- 09/05/2026
+
+## Wat wa het doel? 
+- Model voor air obstacle 
+- Air obstacle logic 
+- Player movement logic 
+- Death logic 
+
+-- Bonus -- 
+- 3rd ground obstacle model 
+- 2nd air obstacle model 
+
+## Wat heb ik gedaan? 
+- Ik heb de lucht obstakel model afgemaakt en deze geimplementeerd zodat de drone niet over elke ground obstacle heen kan vliegen. 
