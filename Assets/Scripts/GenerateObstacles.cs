@@ -16,15 +16,49 @@ public class GenerateObstacles : MonoBehaviour
     private void PlaceObstacle(Transform obstaclePosition)
     {
         GameObject randomObstaclePrefab = ObstaclePrefabs[Random.Range(0, ObstaclePrefabs.Count)];
-        GameObject newObstacle = Instantiate(randomObstaclePrefab, obstaclePosition.position, randomObstaclePrefab.transform.rotation);
+
+        GameObject newObstacle = Instantiate(
+            randomObstaclePrefab,
+            obstaclePosition.position,
+            randomObstaclePrefab.transform.rotation
+        );
+
         newObstacle.transform.SetParent(obstaclePosition);
+
+        AlignBottomToNode(newObstacle, obstaclePosition.position.y);
     }
 
     private void PlaceAirObstacle(Transform airObstaclePosition)
     {
         GameObject randomAirObstaclePrefab = AirObstaclePrefabs[Random.Range(0, AirObstaclePrefabs.Count)];
-        GameObject newAirObstacle = Instantiate(randomAirObstaclePrefab, airObstaclePosition.position, randomAirObstaclePrefab.transform.rotation);
+
+        GameObject newAirObstacle = Instantiate(
+            randomAirObstaclePrefab,
+            airObstaclePosition.position, 
+            randomAirObstaclePrefab.transform.rotation
+        );
+
         newAirObstacle.transform.SetParent(airObstaclePosition);
+    }
+
+    private void AlignBottomToNode(GameObject obstacle, float nodeY)
+    {
+        Renderer[] renderers = obstacle.GetComponentsInChildren<Renderer>();
+
+        if (renderers.Length == 0)
+            return;
+
+        Bounds bounds = renderers[0].bounds;
+
+        foreach (Renderer renderer in renderers)
+        {
+            bounds.Encapsulate(renderer.bounds);
+        }
+
+        float bottomY = bounds.min.y;
+        float offsetY = nodeY - bottomY;
+
+        obstacle.transform.position += new Vector3(0f, offsetY, 0f);
     }
 
     public void GetAllObstacleSegments(GameObject trackSegment)
@@ -52,14 +86,14 @@ public class GenerateObstacles : MonoBehaviour
             )
             .ToList();
 
-            int randomAirObstacleAmount = Random.Range(1, 3);
+            int randomAirObstacleAmount = Random.Range(0, 2);
 
             for (int i = 0; i < randomAirObstacleAmount; i++)
             {
                 if (airObstaclePositions.Count == 0)
                 break;
 
-            int randomIndex = Random.Range(0, airObstaclePositions.Count);
+            int randomIndex = Random.Range(0, airObstaclePositions.Count + 1);
             Transform randomAirObstaclePosition = airObstaclePositions[randomIndex];
 
             PlaceAirObstacle(randomAirObstaclePosition);
