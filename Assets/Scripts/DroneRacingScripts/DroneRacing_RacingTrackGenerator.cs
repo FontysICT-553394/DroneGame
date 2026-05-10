@@ -8,12 +8,20 @@ public class RacingTrackGenerator : MonoBehaviour
     
 
     [SerializeField] private GameObject trackSegmentPrefab;
+    [SerializeField] private GameObject finishLinePrefab;
+
+
     [SerializeField] private GenerateObstacles generateObstacles;
     public List<GameObject> TrackSegments => trackSegments;
     private List<GameObject> trackSegments = new List<GameObject>();
     public int trackSegmentAmount = 5;
     public int trackSegmentCounter = 1;
     public float trackSegmentLength = -64.05f;
+
+    private int tracksPlaced = 0;
+    [SerializeField] private int tracksToPlaceForFinish = 10;
+    private bool stopPlacingTracks = false;
+    private bool finishPlaced = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,6 +34,7 @@ public class RacingTrackGenerator : MonoBehaviour
 
     private void AddTrackSegment()
     {
+        if (stopPlacingTracks) return;
         Debug.Log("AddTrackSegment called");
 
         GameObject newTrackSegment = Instantiate(
@@ -45,22 +54,47 @@ public class RacingTrackGenerator : MonoBehaviour
         Debug.Log("Calling GenerateObstaclesForTrack on: " + newTrackSegment.name);
 
         generateObstacles.GenerateObstaclesForTrack(newTrackSegment);
+
+        tracksPlaced++;
+    }
+
+    private void PlaceFinishLine()
+    {
+        if (finishPlaced) return;
+
+        finishPlaced = true;
+        stopPlacingTracks = true;
+
+        GameObject lastTrack = trackSegments[trackSegments.Count - 1];
+
+        Vector3 finishPos = lastTrack.transform.position + new Vector3(trackSegmentLength, 0f, 0f);
+
+        GameObject finishLine = Instantiate(finishLinePrefab, finishPos, Quaternion.identity);
+
+        Rigidbody rb = finishLine.GetComponent<Rigidbody>();
+        if (rb != null)
+            rb.linearVelocity = Vector3.right * 10f;
     }
 
     void Update()
     {
         foreach (var trackSegment in trackSegments)
         {
-            if (trackSegment == null)
-            {
-                Debug.LogWarning("Track segment is null, skipping.");
-                continue;
-            }
+            if (trackSegment == null) continue;
+
             Rigidbody trackSegmentRb = trackSegment.GetComponent<Rigidbody>();
             trackSegmentRb.linearVelocity = Vector3.right * 10f;
         }
 
-        if (trackSegments.Count >= trackSegmentAmount) return; 
+        if (tracksPlaced >= tracksToPlaceForFinish)
+        {
+            PlaceFinishLine();
+            return;
+        }
+
+        if (stopPlacingTracks) return;
+
+        if (trackSegments.Count >= trackSegmentAmount) return;
 
         for (trackSegmentCounter = trackSegments.Count; trackSegmentCounter < trackSegmentAmount; trackSegmentCounter++)
         {

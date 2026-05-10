@@ -10,6 +10,7 @@ TagManager:
   - AirObstacleNode
   - Obstacle
   - Currency
+  - FinishLine
   layers:
   - Default
   - TransparentFX

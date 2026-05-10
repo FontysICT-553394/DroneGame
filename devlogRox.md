@@ -79,4 +79,32 @@ In de avond heb ik nog thuis gewerkt aan de obstacles, ik heb nu een soort obsta
 ## Volgende stap
 Als volgt ga ik werken aan het verfijnen van mijn obstakel logic die nu op elke node die leeg is een batterij zet, ik wil graag dast het ook een randomized aspect heeft. Ik wil ook graag nieuwe ground obstacles en air obstacles. Het zou ook leuk zijn als ik de finish kan maken. 
 
-s
+----------------------------------------------------------------------
+# Devlog 3 - Roksana
+
+## Datum 
+- 10/05/2026
+
+## Wat wa het doel? 
+- Finish maken om de game "haalbaar" te maken. 
+- nieuwe ground obstacle maken. 
+
+## Wat heb ik gedaan? 
+
+
+## Waarom deze aanpak? 
+
+
+## Problemen
+
+
+## Oplossing
+
+
+## Resultaten 
+
+
+## Reflectie 
+
+
+## Volgende stap
