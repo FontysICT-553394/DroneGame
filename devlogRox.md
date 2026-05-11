@@ -90,21 +90,25 @@ Als volgt ga ik werken aan het verfijnen van mijn obstakel logic die nu op elke 
 - nieuwe ground obstacle maken. 
 
 ## Wat heb ik gedaan? 
-
+- Finish gemaakt + eindscherm 
+- Nieuwe grond obstacle gemaakt: traffic cone 
+- Nieuwe air obstacle gemaat: banner 
+- Logica voor finish behalen en logica voor de nieuwe obstacles 
 
 ## Waarom deze aanpak? 
-
+Ik heb ervoor gekozen om de finish te maken zodat de game haalbaar is, nu kunnen we instellen dat de finish na bv 2 minuten gameplay verschijnt. Ik heb ook extra models gemaakt om de game wat interessanter te maken. 
 
 ## Problemen
-
+Ik heb dit keer geen problemen gehad bij het ontwikkelen van de nieuwe onderdelen. 
 
 ## Oplossing
-
+-
 
 ## Resultaten 
-
+Als resultaat hebben we een werkende finish logic en leuke nieuwe models 
 
 ## Reflectie 
-
+Ik heb vandaag wat gespeeld met models maken en vooral nagedacht over welke models ik zou willen in de game 
 
 ## Volgende stap
+Als volgt ga ik death logica ontwikkelen en wat extra models maken voor variatie 

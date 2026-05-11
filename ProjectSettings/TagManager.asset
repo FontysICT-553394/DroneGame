@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - Currency
   - FinishLine
+  - BannerNode
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum ObstacleStatus
@@ -24,6 +25,7 @@ public class GenerateObstacles : MonoBehaviour
     [SerializeField] private GameObject batteryPrefab;
     [SerializeField] private List<GameObject> ObstaclePrefabs = new List<GameObject>();
     [SerializeField] private List<GameObject> AirObstaclePrefabs = new List<GameObject>();
+    [SerializeField] private GameObject bannerPrefab;
 
     private static List<Transform> GetTaggedNodesFromRow(GameObject row, string nodeTag)
     {
@@ -66,6 +68,26 @@ public class GenerateObstacles : MonoBehaviour
         newAirObstacle.transform.SetParent(airObstaclePosition);
 
         AlignBottomToNode(newAirObstacle, airObstaclePosition.position.y + 2f);
+    }
+
+    private void PlaceBannerOnRow(GameObject airObstacleRow)
+    {
+        if (bannerPrefab == null) return;
+
+        List<Transform> bannerNodes = GetTaggedNodesFromRow(airObstacleRow, "BannerNode");
+
+        if (bannerNodes.Count == 0) return;
+
+        foreach (Transform bannerNode in bannerNodes)
+        {
+            GameObject newBanner = Instantiate(
+                bannerPrefab,
+                bannerNode.position,
+                bannerPrefab.transform.rotation
+            );
+
+            newBanner.transform.SetParent(bannerNode);
+        }
     }
 
     private void PlaceBatteryOnEmptyNodes()
@@ -152,6 +174,16 @@ public class GenerateObstacles : MonoBehaviour
 
             HashSet<Transform> chosenAirNodes = ChooseRandomNodes(airNodes, airAmount);
 
+            if (chosenAirNodes.Count == 0)
+            {
+                PlaceBannerOnRow(airObstacleRow);
+
+                foreach (Transform airNode in airNodes)
+                {
+                    nodeStatus[airNode] = ObstacleStatus.Occupied;
+                }
+            }
+
             foreach (Transform chosenAirNode in chosenAirNodes)
             {
                 PlaceAirObstacle(chosenAirNode);
@@ -172,7 +204,7 @@ public class GenerateObstacles : MonoBehaviour
                 PlaceObstacle(chosenNode);
             }
         }
-
+        
         PlaceBatteryOnEmptyNodes();
     }
 

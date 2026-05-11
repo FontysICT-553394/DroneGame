@@ -169,8 +169,10 @@ MonoBehaviour:
   ObstaclePrefabs:
   - {fileID: 3689295253391478374, guid: dce9fd370ae6990498ba1f4303d9aeed, type: 3}
   - {fileID: 5849239246130945359, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
+  - {fileID: 8487686247295111829, guid: 72a1feffbd9074c41af7b573cb22fd80, type: 3}
   AirObstaclePrefabs:
   - {fileID: 9165525537795261921, guid: c1ac8b9d35ec1ae4c8e44ea867ae42aa, type: 3}
+  bannerPrefab: {fileID: 2115004367364175837, guid: 3146042e2275f6e42b5a259779be255b, type: 3}
 --- !u!1 &599172467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,10 +2383,6 @@ PrefabInstance:
     - target: {fileID: 3770331661431998949, guid: a714f4cb1febcd74397207695736ce00, type: 3}
       propertyPath: m_Name
       value: DroneRacingTrackPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 3770331661431998949, guid: a714f4cb1febcd74397207695736ce00, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8051375049887970377, guid: a714f4cb1febcd74397207695736ce00, type: 3}
       propertyPath: m_LocalPosition.x
