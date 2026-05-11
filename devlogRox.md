@@ -112,3 +112,6 @@ Ik heb vandaag wat gespeeld met models maken en vooral nagedacht over welke mode
 
 ## Volgende stap
 Als volgt ga ik death logica ontwikkelen en wat extra models maken voor variatie 
+
+## Feedback 
+Ik heb als feedback gekregen dat ik nog goed moet nadenken of ik de game wil laten in zijn "race" style of dat ik misschien beter wat meer mijn design kan richten op een vliegende drone, dus bv dingen ontwijken in de lucht? Ik moet ook nadenken over wat de batterijen gaan doen in mijn game, gaan dit alleen maar items zijn waarmee ik iets kan opladen?? Ik moet ook de design van mijn drone player aanpassen zodat hij meer als een drone voelt. 
