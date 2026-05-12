@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8378903484701278068}
   m_Layer: 0
   m_Name: WiggleBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,6 +175,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   hitbox: {fileID: 3697765394892456540}
+  despawnTime: 30
   speed: 25
   damage: 1
   stepInterval: 0.8
+  doesBulletGoDown: 1

@@ -13,6 +13,13 @@ public abstract class SpaceInvader : MonoBehaviour
     [SerializeField] private float shootCooldown = 2f;
     [SerializeField] private List<GameObject> bulletPrefabs = new();
 
+    private float lastShootTime;
+
+    public virtual void Update()
+    {
+        
+    }
+    
     public bool CanShoot()
     {
         float yOffset = 50f;
@@ -31,7 +38,7 @@ public abstract class SpaceInvader : MonoBehaviour
         if (CanShoot())
         {
             int random = new Random().Next(3);
-            GameObject bullet = Instantiate(bulletPrefabs[random], (Vector2) transform.position + Vector2.down * 50, transform.rotation);
+            GameObject bullet = Instantiate(bulletPrefabs[random], (Vector2) transform.position + Vector2.down * 65, transform.rotation);
             bullet.transform.localScale = Vector3.one * 800f;
         }
 

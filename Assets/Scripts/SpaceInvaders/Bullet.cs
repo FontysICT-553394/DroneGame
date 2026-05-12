@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D hitbox; 
+    [SerializeField] private BoxCollider2D hitbox;
+    [SerializeField] private float despawnTime = 30f;
     public float speed = 25f; 
     public int damage = 1;
     public float stepInterval = 0.8f;
@@ -14,6 +17,11 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         timer = 0f;
+    }
+
+    private void Start()
+    {
+        StartCoroutine(Despawn());
     }
 
     public void FixedUpdate()
@@ -47,8 +55,20 @@ public class Bullet : MonoBehaviour
                 {
                     hit.gameObject.GetComponent<SpaceInvadersPlayerStats>().TakeDamage(damage);
                     Destroy(gameObject);
+                }else if(hit.CompareTag("Bullet"))
+                {
+                    Destroy(hit.gameObject);
+                    Destroy(gameObject);
                 }
             }
         }
+    }
+
+    private IEnumerator Despawn()
+    {
+        WaitForSeconds wait = new WaitForSeconds(despawnTime);
+        yield return wait;
+        
+        Destroy(gameObject);
     }
 }

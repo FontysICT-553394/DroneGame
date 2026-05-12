@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6613223890846917775}
   m_Layer: 0
   m_Name: StraightBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
   hitbox: {fileID: 6613223890846917775}
+  despawnTime: 30
   speed: 25
   damage: 1
   stepInterval: 0.8
