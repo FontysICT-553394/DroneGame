@@ -26,7 +26,7 @@ public class JetPackMovement : MonoBehaviour
     void Update()
     {
         moveInput.x = Input.GetAxisRaw("Horizontal");
-        moveInput.z = Input.GetAxisRaw("Vertical");
+        //moveInput.z = Input.GetAxisRaw("Vertical");
     }
 
     void FixedUpdate()
