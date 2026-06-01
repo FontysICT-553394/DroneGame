@@ -28,13 +28,16 @@ public class Octopus : SpaceInvader
 
     private void SetNextShootTime()
     {
-        float cooldown = 3f;
+        float cooldown = Random.Range(shootCooldownMin, shootCooldownMax);
         nextShootTime = Time.time + cooldown + Random.Range(2f, 4f);
     }
     
     public override void Die()
     {
-        GameObject.Find("Player-2D").GetComponent<SpaceInvadersPlayerStats>().AddScore(score);
+        var info = GameObject.Find("Player-2D").GetComponent<SpaceInvadersPlayerStats>();
+        info.AddScore(score);
+        
+        GameObject.Find("UIManager").GetComponent<SpaceInvaderUIManager>().UpdateScore(info.score);
         base.Die();
     }
 }

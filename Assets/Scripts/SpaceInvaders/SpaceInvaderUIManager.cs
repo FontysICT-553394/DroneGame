@@ -7,8 +7,9 @@ public class SpaceInvaderUIManager : MonoBehaviour
     [Header("UI Elements")] 
     [SerializeField] private TMP_Text scoreTextGameOver;
     [SerializeField] private TMP_Text scoreTextInGame;
+    [SerializeField] private TMP_Text healthText;
     [SerializeField] private GameObject gameOverUI;
-
+    
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -38,6 +39,11 @@ public class SpaceInvaderUIManager : MonoBehaviour
     public void UpdateScore(int score)
     {
         scoreTextInGame.text = $"Score: {score}";
+    }
+    
+    public void UpdateHealth(int health)
+    {
+        healthText.text = $"Lives: {health}";
     }
 
     public void RestartBtn()

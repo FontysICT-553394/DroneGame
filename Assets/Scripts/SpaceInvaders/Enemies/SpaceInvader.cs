@@ -10,7 +10,8 @@ public abstract class SpaceInvader : MonoBehaviour
     [SerializeField] private int damage = 1;
     [SerializeField] private float moveSpeed = 25f;
     [SerializeField] private float moveDelay = 2f;
-    [SerializeField] private float shootCooldown = 2f;
+    [SerializeField] public float shootCooldownMin = 2f;
+    [SerializeField] public float shootCooldownMax = 4f;
     [SerializeField] private List<GameObject> bulletPrefabs = new();
 
     private float lastShootTime;
