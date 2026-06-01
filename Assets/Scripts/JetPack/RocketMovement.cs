@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using UnityEngine;
+
 public class RocketMovement : MonoBehaviour
 {
     [SerializeField] private float speedMultiplier = 2.2f;
@@ -7,7 +9,7 @@ public class RocketMovement : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.GameRunning) return;
+        if (GameManager.Instance != null && !GameManager.Instance.GameRunning) return;
 
         float speed = GameManager.Instance.GameSpeed * speedMultiplier;
 
