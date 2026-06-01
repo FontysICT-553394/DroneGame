@@ -25,7 +25,20 @@ public class GenerateObstacles : MonoBehaviour
     [SerializeField] private GameObject batteryPrefab;
     [SerializeField] private List<GameObject> ObstaclePrefabs = new List<GameObject>();
     [SerializeField] private List<GameObject> AirObstaclePrefabs = new List<GameObject>();
+    [SerializeField] private GameObject planePrefab;
     [SerializeField] private GameObject bannerPrefab;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private float planeSpawnDistance = 30f;
+    [SerializeField, Range(0f, 1f)] private float bannerSpawnChance = 0.25f;
+    [SerializeField] private bool debugPlaneSpawning = false;
+
+    private readonly List<Transform> pendingPlaneNodes = new List<Transform>();
+    private bool loggedMissingPlanePrefab;
+    private bool loggedMissingPlayer;
+    private bool loggedNoPlaneNodes;
+    private float nextPlaneDebugTime;
+    private bool loggedMissingPlaneTag;
+    private bool warnedNoPlaneNodesWithPlanePrefab;
 
     private static List<Transform> GetTaggedNodesFromRow(GameObject row, string nodeTag)
     {
@@ -36,8 +49,23 @@ public class GenerateObstacles : MonoBehaviour
 
         return rowTransform
             .GetComponentsInChildren<Transform>()
-            .Where(t => t != rowTransform && t.CompareTag(nodeTag))
+            .Where(t => t != rowTransform && SafeCompareTag(t, nodeTag))
             .ToList();
+    }
+
+    private static bool SafeCompareTag(Transform t, string tag)
+    {
+        if (t == null || string.IsNullOrEmpty(tag))
+            return false;
+
+        try
+        {
+            return t.CompareTag(tag);
+        }
+        catch (UnityException)
+        {
+            return false;
+        }
     }
 
     private void PlaceObstacle(Transform obstaclePosition)
@@ -57,6 +85,21 @@ public class GenerateObstacles : MonoBehaviour
 
     private void PlaceAirObstacle(Transform airObstaclePosition)
     {
+        if (airObstaclePosition != null && SafeCompareTag(airObstaclePosition, "PlaneObstacleNode"))
+        {
+            if (planePrefab == null)
+                return;
+
+            // Queue plane spawn until player is nearby. Mark node occupied so batteries don't spawn here.
+            if (!pendingPlaneNodes.Contains(airObstaclePosition))
+            {
+                pendingPlaneNodes.Add(airObstaclePosition);
+                nodeStatus[airObstaclePosition] = ObstacleStatus.Occupied;
+            }
+
+            return;
+        }
+
         GameObject randomAirObstaclePrefab = AirObstaclePrefabs[Random.Range(0, AirObstaclePrefabs.Count)];
 
         GameObject newAirObstacle = Instantiate(
@@ -80,6 +123,9 @@ public class GenerateObstacles : MonoBehaviour
 
         foreach (Transform bannerNode in bannerNodes)
         {
+            if (Random.value > bannerSpawnChance)
+                continue;
+
             GameObject newBanner = Instantiate(
                 bannerPrefab,
                 bannerNode.position,
@@ -99,6 +145,10 @@ public class GenerateObstacles : MonoBehaviour
 
         foreach (Transform node in emptyNodes)
         {
+            // Skip nodes reserved for planes 
+            if (SafeCompareTag(node, "PlaneObstacleNode"))
+                continue;
+
             GameObject newBattery = Instantiate(
                 batteryPrefab,
                 node.position + new Vector3(0f, batteryHeightOffset, 0f),
@@ -109,6 +159,145 @@ public class GenerateObstacles : MonoBehaviour
 
             nodeStatus[node] = ObstacleStatus.Occupied;
         }
+    }
+
+    private void Update()
+    {
+        if (playerTransform == null)
+            TryResolvePlayerTransform();
+
+        if (pendingPlaneNodes.Count == 0)
+        {
+            if (debugPlaneSpawning)
+            {
+                WarnIfTagMissingOnce("PlaneObstacleNode", ref loggedMissingPlaneTag);
+
+                if (!loggedNoPlaneNodes)
+                {
+                    Debug.LogWarning($"[GenerateObstacles] No PlaneObstacleNodes queued yet on '{name}'.");
+                    loggedNoPlaneNodes = true;
+                }
+            }
+
+            return;
+        }
+
+        if (planePrefab == null)
+        {
+            if (debugPlaneSpawning && !loggedMissingPlanePrefab)
+            {
+                Debug.LogWarning("[GenerateObstacles] planePrefab is not assigned.");
+                loggedMissingPlanePrefab = true;
+            }
+
+            return;
+        }
+
+        if (playerTransform == null)
+        {
+            if (debugPlaneSpawning && !loggedMissingPlayer)
+            {
+                Debug.LogWarning("[GenerateObstacles] playerTransform is null (assign it or ensure Player tag / DroneMovementRacingDrone exists).");
+                loggedMissingPlayer = true;
+            }
+
+            return;
+        }
+
+        if (debugPlaneSpawning && Time.time >= nextPlaneDebugTime)
+        {
+            float minDist = float.PositiveInfinity;
+
+            for (int j = 0; j < pendingPlaneNodes.Count; j++)
+            {
+                Transform n = pendingPlaneNodes[j];
+                if (n == null) continue;
+
+                float d = Vector3.Distance(playerTransform.position, n.position);
+                if (d < minDist) minDist = d;
+            }
+
+            Debug.Log($"[GenerateObstacles] Pending planes: {pendingPlaneNodes.Count}, closestDist: {minDist:0.00}, spawnDist: {planeSpawnDistance:0.00}");
+            nextPlaneDebugTime = Time.time + 1f;
+        }
+
+        for (int i = pendingPlaneNodes.Count - 1; i >= 0; i--)
+        {
+            Transform node = pendingPlaneNodes[i];
+
+            if (node == null)
+            {
+                pendingPlaneNodes.RemoveAt(i);
+                continue;
+            }
+
+            float dist = Vector3.Distance(playerTransform.position, node.position);
+
+            if (dist <= planeSpawnDistance)
+            {
+                GameObject newPlane = Instantiate(
+                    planePrefab,
+                    node.position,
+                    planePrefab.transform.rotation
+                );
+
+                newPlane.transform.SetParent(node);
+                AlignBottomToNode(newPlane, node.position.y + 2f);
+
+                pendingPlaneNodes.RemoveAt(i);
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        TryResolvePlayerTransform();
+
+        if (debugPlaneSpawning)
+            WarnIfTagMissingOnce("PlaneObstacleNode", ref loggedMissingPlaneTag);
+    }
+
+    private static void WarnIfTagMissingOnce(string tag, ref bool alreadyLogged)
+    {
+        if (alreadyLogged)
+            return;
+
+        try
+        {
+            // This throws UnityException if the tag isn't defined.
+            GameObject.FindWithTag(tag);
+        }
+        catch (UnityException)
+        {
+            Debug.LogWarning($"[GenerateObstacles] Tag '{tag}' is not defined in the Tag Manager.");
+            alreadyLogged = true;
+        }
+    }
+
+    private void TryResolvePlayerTransform()
+    {
+        if (playerTransform != null)
+            return;
+
+        try
+        {
+            GameObject playerObj = GameObject.FindWithTag("Player");
+
+            if (playerObj != null)
+            {
+                playerTransform = playerObj.transform;
+                return;
+            }
+        }
+        catch (UnityException)
+        {
+            // Tag "Player" might not exist; ignore.
+        }
+
+        DroneMovementRacingDrone drone = FindAnyObjectByType<DroneMovementRacingDrone>();
+
+        if (drone != null)
+            playerTransform = drone.transform;
     }
 
     private void AlignBottomToNode(GameObject obstacle, float nodeY)
@@ -165,6 +354,34 @@ public class GenerateObstacles : MonoBehaviour
     {
         GetAllObstacleSegments(trackSegment);
 
+        if (!warnedNoPlaneNodesWithPlanePrefab && planePrefab != null && pendingPlaneNodes.Count == 0)
+        {
+            bool tagDefined = true;
+
+            try
+            {
+                GameObject.FindWithTag("PlaneObstacleNode");
+            }
+            catch (UnityException)
+            {
+                tagDefined = false;
+            }
+
+            if (!tagDefined)
+            {
+                Debug.LogWarning("[GenerateObstacles] planePrefab is assigned, but tag 'PlaneObstacleNode' is NOT defined. Create the tag and assign it to your plane spawn nodes.");
+            }
+            else
+            {
+                Debug.LogWarning("[GenerateObstacles] planePrefab is assigned, but 0 PlaneObstacleNode nodes were found under AirObstacleRow. Check that your nodes have tag 'PlaneObstacleNode' and are children of an AirObstacleRow.");
+            }
+
+            warnedNoPlaneNodesWithPlanePrefab = true;
+        }
+
+        if (debugPlaneSpawning)
+            Debug.Log($"[GenerateObstacles] '{name}' rows: air={airObstacleRows.Count}, ground={obstacleRows.Count}, pendingPlanes={pendingPlaneNodes.Count}");
+
         foreach (var airObstacleRow in airObstacleRows)
         {
             List<Transform> airNodes = airObstacleNodesByRow[airObstacleRow];
@@ -216,13 +433,13 @@ public class GenerateObstacles : MonoBehaviour
 
         obstacleRows = trackSegment
             .GetComponentsInChildren<Transform>()
-            .Where(t => t.CompareTag("ObstacleRow"))
+            .Where(t => SafeCompareTag(t, "ObstacleRow"))
             .Select(t => t.gameObject)
             .ToList();
 
         airObstacleRows = trackSegment
             .GetComponentsInChildren<Transform>()
-            .Where(t => t.CompareTag("AirObstacleRow"))
+            .Where(t => SafeCompareTag(t, "AirObstacleRow"))
             .Select(t => t.gameObject)
             .ToList();
 
@@ -238,12 +455,31 @@ public class GenerateObstacles : MonoBehaviour
 
         foreach (GameObject airObstacleRow in airObstacleRows)
         {
-            airObstacleNodesByRow[airObstacleRow] = GetTaggedNodesFromRow(airObstacleRow, "AirObstacleNode");
+            List<Transform> airNodes = GetTaggedNodesFromRow(airObstacleRow, "AirObstacleNode");
+            List<Transform> planeNodes = GetTaggedNodesFromRow(airObstacleRow, "PlaneObstacleNode");
 
-            foreach (Transform node in airObstacleNodesByRow[airObstacleRow])
+            // Only air obstacle nodes participate in air obstacle randomization.
+            airObstacleNodesByRow[airObstacleRow] = airNodes;
+
+            foreach (Transform node in airNodes)
             {
                 nodeStatus[node] = ObstacleStatus.Empty;
             }
+
+            // Plane nodes are always queued to spawn later (when player is nearby).
+            foreach (Transform planeNode in planeNodes)
+            {
+                if (planeNode == null)
+                    continue;
+
+                nodeStatus[planeNode] = ObstacleStatus.Occupied;
+
+                if (!pendingPlaneNodes.Contains(planeNode))
+                    pendingPlaneNodes.Add(planeNode);
+            }
+
+            if (debugPlaneSpawning)
+                Debug.Log($"[GenerateObstacles] AirRow '{airObstacleRow.name}': airNodes={airNodes.Count}, planeNodes={planeNodes.Count}");
         }
     }
 }

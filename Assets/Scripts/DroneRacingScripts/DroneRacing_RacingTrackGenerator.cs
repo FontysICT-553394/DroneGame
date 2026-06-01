@@ -73,7 +73,7 @@ public class RacingTrackGenerator : MonoBehaviour
 
         Rigidbody rb = finishLine.GetComponent<Rigidbody>();
         if (rb != null)
-            rb.linearVelocity = Vector3.right * 10f;
+            rb.linearVelocity = Vector3.right * 8f;
     }
 
     void Update()
@@ -83,7 +83,7 @@ public class RacingTrackGenerator : MonoBehaviour
             if (trackSegment == null) continue;
 
             Rigidbody trackSegmentRb = trackSegment.GetComponent<Rigidbody>();
-            trackSegmentRb.linearVelocity = Vector3.right * 10f;
+            trackSegmentRb.linearVelocity = Vector3.right * 8f;
         }
 
         if (tracksPlaced >= tracksToPlaceForFinish)

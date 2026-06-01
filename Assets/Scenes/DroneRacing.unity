@@ -170,9 +170,14 @@ MonoBehaviour:
   - {fileID: 3689295253391478374, guid: dce9fd370ae6990498ba1f4303d9aeed, type: 3}
   - {fileID: 5849239246130945359, guid: 5abb8db6c61dcae4fb9b67d85a7a6596, type: 3}
   - {fileID: 8487686247295111829, guid: 72a1feffbd9074c41af7b573cb22fd80, type: 3}
+  - {fileID: 341385188234520338, guid: 18fbdf4246ed8a244a61a946a0c997f2, type: 3}
   AirObstaclePrefabs:
   - {fileID: 9165525537795261921, guid: c1ac8b9d35ec1ae4c8e44ea867ae42aa, type: 3}
+  planePrefab: {fileID: 5457181664528680887, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
   bannerPrefab: {fileID: 2115004367364175837, guid: 3146042e2275f6e42b5a259779be255b, type: 3}
+  playerTransform: {fileID: 1179686169}
+  planeSpawnDistance: 10
+  bannerSpawnChance: 0.277
 --- !u!1 &599172467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1262,6 +1267,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 5
+  inputLatency: 4
+  acceleration: 8
+  dragWhenNoInput: 3
 --- !u!54 &1179686165
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2384,6 +2392,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DroneRacingTrackPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3770331661431998949, guid: a714f4cb1febcd74397207695736ce00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8051375049887970377, guid: a714f4cb1febcd74397207695736ce00, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2429,6 +2441,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a714f4cb1febcd74397207695736ce00, type: 3}
+--- !u!1001 &4314615077847766572
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.15214
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679272327764090125, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5457181664528680887, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
+      propertyPath: m_Name
+      value: Plane SF export
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 61625e3994904fa4792ec11115511bb2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2443,3 +2512,4 @@ SceneRoots:
   - {fileID: 900448776}
   - {fileID: 2306427040839564243}
   - {fileID: 953689933}
+  - {fileID: 4314615077847766572}
