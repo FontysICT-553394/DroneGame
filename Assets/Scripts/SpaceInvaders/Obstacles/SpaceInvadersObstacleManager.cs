@@ -7,6 +7,7 @@ public class SpaceInvadersObstacleManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> obstacles;
     [SerializeField] private List<GameObject> obstacleEndLocation;
+    [SerializeField] private GameObject dangerMark;
     [SerializeField] private float minCooldown = 10f;
     [SerializeField] private float maxCooldown = 20f;
     [SerializeField] private float returnCooldown = 10f;
@@ -15,7 +16,7 @@ public class SpaceInvadersObstacleManager : MonoBehaviour
     private readonly List<int> obstacleIndicesToMove = new();
     private readonly List<Vector3> obstacleStartPositions = new();
     private readonly Dictionary<int, Coroutine> activeMoves = new();
-
+    
     private void Start()
     {
         obstacleStartPositions.Clear();
@@ -66,11 +67,12 @@ public class SpaceInvadersObstacleManager : MonoBehaviour
                 GameObject obstacle = obstacles[index];
                 GameObject endLocation = obstacleEndLocation[index];
                 if (obstacle == null || endLocation == null)
-                {
                     continue;
-                }
 
                 MoveObstacle(index, obstacle, endLocation.transform.position);
+                
+                GameObject danger = Instantiate(dangerMark, endLocation.transform.position, Quaternion.identity);
+                StartCoroutine(QuestionMarkBlink(danger));
             }
         }
     }
@@ -78,14 +80,10 @@ public class SpaceInvadersObstacleManager : MonoBehaviour
     private void MoveObstacle(int index, GameObject obstacle, Vector3 targetPosition)
     {
         if (index >= obstacleStartPositions.Count)
-        {
             return;
-        }
 
         if (activeMoves.TryGetValue(index, out Coroutine running))
-        {
             StopCoroutine(running);
-        }
 
         Vector3 startPosition = obstacleStartPositions[index];
         Coroutine routine = StartCoroutine(MoveObstacleRoutine(index, obstacle.transform, startPosition, targetPosition));
@@ -120,5 +118,19 @@ public class SpaceInvadersObstacleManager : MonoBehaviour
 
         obstacleTransform.position = startPosition;
         activeMoves.Remove(index);
+    }
+    
+    private IEnumerator QuestionMarkBlink(GameObject exclemationMark, int blinkAmount = 3)
+    {
+        for (int i = 0; i < blinkAmount; i++)
+        {
+            exclemationMark.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+            exclemationMark.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+        }
+        
+        Destroy(exclemationMark);
+        yield return new WaitForSeconds(0.5f);
     }
 }

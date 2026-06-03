@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,13 +7,27 @@ public class SpaceInvaderUIManager : MonoBehaviour
 {
     [Header("UI Elements")] 
     [SerializeField] private TMP_Text scoreTextGameOver;
+    [SerializeField] private TMP_Text scoreTextWin;
     [SerializeField] private TMP_Text scoreTextInGame;
     [SerializeField] private TMP_Text healthText;
     [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject winUI;
+    
+    [SerializeField] private List<GameObject> enemyLayers = new List<GameObject>();
     
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    
+    private void Update()
+    {
+        int enemiesLeft = 0;
+        foreach(GameObject enemyLayer in enemyLayers)
+            enemiesLeft += enemyLayer.transform.childCount;
+
+        if (enemiesLeft <= 0)
+            ShowWin(GameObject.Find("Player-2D").GetComponent<SpaceInvadersPlayerStats>().score);
     }
 
     private void OnDisable()
@@ -24,6 +39,14 @@ public class SpaceInvaderUIManager : MonoBehaviour
     {
         gameOverUI.SetActive(true);
         scoreTextGameOver.text = $"Score: {score}";
+    
+        Time.timeScale = 0;
+    }
+
+    private void ShowWin(int score)
+    {
+        winUI.SetActive(true);
+        scoreTextWin.text = $"Score: {score}";
     
         Time.timeScale = 0;
     }
