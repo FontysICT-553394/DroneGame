@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] public float moveSpeed = 3f;
-    
+    private float gravity = 9.8f;
     private Vector3 moveInput;
     private Rigidbody rb;
 
