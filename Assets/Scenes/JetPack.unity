@@ -934,6 +934,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3510140947967529137, guid: 4b018cebf2accf219be895b876f9c345, type: 3}
+      propertyPath: minigameName
+      value: JetPack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3510140947967529137, guid: 4b018cebf2accf219be895b876f9c345, type: 3}
       propertyPath: highscoreText
       value: 
       objectReference: {fileID: 2099208145}

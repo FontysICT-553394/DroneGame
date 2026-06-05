@@ -19,6 +19,7 @@ public class MemoryGameManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text roundText;
     public GameObject gameOverText;
+    public GameObject scoreboardObject;
 
     [Header("Sequence Settings")]
     public float showTime = 1.2f;
@@ -47,6 +48,7 @@ public class MemoryGameManager : MonoBehaviour
         if (gameOverText != null)
         {
             gameOverText.SetActive(false);
+            scoreboardObject.SetActive(false);
         }
 
         UpdateUI();
@@ -214,6 +216,7 @@ public class MemoryGameManager : MonoBehaviour
         if (gameOverText != null)
         {
             gameOverText.SetActive(true);
+            scoreboardObject.SetActive(true);
 
             TMP_Text gameOverLabel = gameOverText.GetComponent<TMP_Text>();
 
