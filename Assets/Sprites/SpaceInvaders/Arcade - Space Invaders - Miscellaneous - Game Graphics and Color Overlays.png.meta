@@ -1,0 +1,1842 @@
+fileFormatVersion: 2
+guid: da8ecaedf62b6cbd2be2fd005e320898
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 119
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca83fc85cfb539ead9e2ffbbd17d5c79
+      internalID: 747328420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 119
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1179ee6bb86769282892d50cbe379997
+      internalID: 1502785095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_2
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 119
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d53d0bb21e2e1a8aa51423ae0c20911
+      internalID: -370542480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_3
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 119
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6801e3cfb0c4f8be8b1efb3360be9ba
+      internalID: -1291461223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_4
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 109
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37c002033e4871b8383897180d6dc08c
+      internalID: 1750254123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_5
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 109
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63aafc292f12d6268ae7e62f71792f2
+      internalID: 732808087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_6
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 109
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0e6136d2b80ca06bbd66097d2940cd1
+      internalID: 1782868450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abf7054bc64fbee51b77580e636ed94f
+      internalID: 1794981245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_8
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 374b02ee1e86c2d56ba6e7b9f3e55e9f
+      internalID: -1085986089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_9
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5eed821c87e8dc2bb51d9441bfaa579
+      internalID: 1069415790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80c48dae85237d1049fcb4dab2ade2fe
+      internalID: 92701375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_11
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac37eb7c79cd34f748f838c8d33e5e51
+      internalID: 1227668588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_12
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 862e1f125a5273048897c50d5349a9ae
+      internalID: -1194104392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_13
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca9c6d44e96d53db98c629e82da7790b
+      internalID: -433878331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_14
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce5ef24221fc6152ad238c4a8f89c74
+      internalID: -2139039701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_15
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c9f177fde3e2a1c68c2d14901453af9
+      internalID: -495329133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_16
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd10467e75b2f013caa490c49e49f89c
+      internalID: 448185243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_17
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ae63bbea9aab735787aece312fed590
+      internalID: 699767381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_18
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 99
+        width: 3
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4114f8b79a232ced7b8892bf852425e2
+      internalID: 1549326782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_19
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 99
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76124df2e490c40e089479758e18b6be
+      internalID: 149742037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_20
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 81
+        width: 24
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfa5a356b692cb5e595a8880d610b5fb
+      internalID: -1178375056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_21
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 81
+        width: 24
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff9710805eef2fc03a05d1144016a262
+      internalID: -780307043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_22
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 81
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fba27e5203df97eb49e3e45187f59106
+      internalID: -2011540625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_23
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 71
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61337bc7dc1d65d0da4f8896bb480c3c
+      internalID: -1079006871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_24
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 71
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6503a2607e1594dbfb1fc43913a5e645
+      internalID: 1684662435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_25
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 71
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6871930697d0a4f4b10590054c6c062
+      internalID: 1800529621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_26
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 71
+        width: 1
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c216deadec783c5fbe4804fffa7321b
+      internalID: -462864729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_27
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 71
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3e0d7fa920dd3037ab10f6844d7eac2
+      internalID: -1989647819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_28
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 61
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e3658737cd8b92acb9697dd77c2187f
+      internalID: -775285189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_29
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 61
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f13d70bed0e8c8599852aa38f9346bd7
+      internalID: 732219100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_30
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 61
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d18fcf8a9e7f1f953b311ab83e314c44
+      internalID: 299284068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_31
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 61
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67737bb0657cf2ddb8b609e51f03faa3
+      internalID: -985491114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_32
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 61
+        width: 16
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f984920b39df0e5a2b50cb2f19e90eab
+      internalID: 1660432539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_33
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 1
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e457704a1539d2e6a92e50fa6534fe4
+      internalID: -2079571996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_34
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 218aed4b67a248f99b1349e94a814217
+      internalID: 1602123381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_35
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa0bbf0395bf29e8b8c02b1b1a3c200e
+      internalID: -1611652219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_36
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be1419d033b30c414bfb335383d6ad3c
+      internalID: -114115328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_37
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b2f3c449b04fc15ba99ba9fbc89809e
+      internalID: 216413592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_38
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 129a502b05df4e9968f412c394642419
+      internalID: -2039584230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_39
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e9b19e0e1bc120b3adf8468d239bb50
+      internalID: 1704631753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_40
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acc7666832e21a831b965c9ff9fae302
+      internalID: -289358157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_41
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e770b059ac3fae4a78886b679d39123a
+      internalID: -280155738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_42
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 11
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4304cde668a9b5d9a99c96f55362970f
+      internalID: 374211221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_43
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee5082c774f26ed38b214dc2991d5a51
+      internalID: -1993171720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_44
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b1ae9925df2e052e98b3c9a6ad91d29
+      internalID: 1490488347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_45
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5d0e9e4ad3faba1b9bbd0ea11f3f20b
+      internalID: 399417923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_46
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a98056e0fae0c83c6a6ac9003d6c289c
+      internalID: -1924624096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_47
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a6258fe884bfdc43a48599ac5b7ef67
+      internalID: -1885246586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_48
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0be880b162724106bc55f40f63e4518
+      internalID: 1213987532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_49
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c8a376771d00b46b99fa0acee4336ce
+      internalID: 1225882404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_50
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 21
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814adb70d49c183e7843cde763bbdeb8
+      internalID: 668262728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_51
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 51
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7335a9168e53cbc84b65d53126b6f85f
+      internalID: -1567779275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_52
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 51
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0d9f364553f14b2fbce452dca95e0c5
+      internalID: 1843766017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_53
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 51
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c06366e50cfc92cdb3cad7b3df27399
+      internalID: -988764116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_54
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 51
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a610fa46e25a6f14681405028ebb9300
+      internalID: -1073719174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_55
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 51
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4de418c1fb74aa8ed97745a44036f778
+      internalID: -1690084418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_56
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 51
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1da6e9192e053bb269424b2c7481faeb
+      internalID: -952028058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_57
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 51
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a5250cd38a408d61b5457e08590ed8c
+      internalID: -971531933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_58
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 51
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5130d3eb498b255990646fc8a4aeec
+      internalID: 1739194768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_59
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 41
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f3926be547f9ed7c81572bbe42d5072
+      internalID: 1407246816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_60
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 41
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6502708dcc7b66aedb03c4b68b802d26
+      internalID: 655725011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_61
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 41
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4219633895e813c5ab096f65495c394a
+      internalID: -2031620893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_62
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 41
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39fdb139fe8c88344a7fd11a639389b9
+      internalID: 643957978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_63
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 41
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a8236d80fe8f3d480841d995b4f17c
+      internalID: 2145413640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_64
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 41
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9273b3589280fa198bca088a23f78f59
+      internalID: -604515690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_65
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 41
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd09629c69721202688ab6d86775c3bd
+      internalID: -403976159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_66
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 41
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 284a1662f4a255f0bb89eafdf53e016e
+      internalID: -2018086723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_67
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bae0e7dc9124fdb69906b10ce596071a
+      internalID: 703656229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_68
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d80264c9696781d0484c816108560043
+      internalID: -297607221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_69
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c96fe998a01d8759b2c167803b9a70b
+      internalID: -1748153332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_70
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbd6932540f3e0d669847f4e32ce0308
+      internalID: -533061578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_71
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2d1df91f07f715038cbafb5b621cac5
+      internalID: 627365548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_72
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 098494da9bd7c5715b7cec99d21adc5a
+      internalID: -928569779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_73
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc07722448c7266b292fa7959d4f6719
+      internalID: 1376769211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_74
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b275ea8e6e09d8d47a119e3cfb5ef15e
+      internalID: 427992277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 221b87e79e09597a2b1ee130af8940a0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_0: 747328420
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_1: 1502785095
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_10: 92701375
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_11: 1227668588
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_12: -1194104392
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_13: -433878331
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_14: -2139039701
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_15: -495329133
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_16: 448185243
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_17: 699767381
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_18: 1549326782
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_19: 149742037
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_2: -370542480
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_20: -1178375056
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_21: -780307043
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_22: -2011540625
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_23: -1079006871
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_24: 1684662435
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_25: 1800529621
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_26: -462864729
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_27: -1989647819
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_28: -775285189
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_29: 732219100
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_3: -1291461223
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_30: 299284068
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_31: -985491114
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_32: 1660432539
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_33: -2079571996
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_34: 1602123381
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_35: -1611652219
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_36: -114115328
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_37: 216413592
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_38: -2039584230
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_39: 1704631753
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_4: 1750254123
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_40: -289358157
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_41: -280155738
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_42: 374211221
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_43: -1993171720
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_44: 1490488347
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_45: 399417923
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_46: -1924624096
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_47: -1885246586
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_48: 1213987532
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_49: 1225882404
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_5: 732808087
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_50: 668262728
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_51: -1567779275
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_52: 1843766017
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_53: -988764116
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_54: -1073719174
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_55: -1690084418
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_56: -952028058
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_57: -971531933
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_58: 1739194768
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_59: 1407246816
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_6: 1782868450
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_60: 655725011
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_61: -2031620893
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_62: 643957978
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_63: 2145413640
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_64: -604515690
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_65: -403976159
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_66: -2018086723
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_67: 703656229
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_68: -297607221
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_69: -1748153332
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_7: 1794981245
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_70: -533061578
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_71: 627365548
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_72: -928569779
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_73: 1376769211
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_74: 427992277
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_8: -1085986089
+      Arcade - Space Invaders - Miscellaneous - Game Graphics and Color Overlays_9: 1069415790
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
