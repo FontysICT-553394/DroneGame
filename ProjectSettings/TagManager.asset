@@ -13,6 +13,8 @@ TagManager:
   - FinishLine
   - BannerNode
   - PlaneObstacleNode
+  - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
