@@ -4,6 +4,15 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - ObstacleRow
+  - ObstacleNode
+  - AirObstacleRow
+  - AirObstacleNode
+  - Obstacle
+  - Currency
+  - FinishLine
+  - BannerNode
+  - PlaneObstacleNode
   - Enemy
   - Bullet
   layers:
