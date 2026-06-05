@@ -3,150 +3,85 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    [Header("Cube Grid Settings")]
-    public GameObject cellPrefab;
-    public int cubeSize = 3;
-    public float spacing = 0.9f;
+    [Header("Face Cube Settings")]
+    public float faceSize = 2.4f;
+    public float faceThickness = 0.08f;
+    public float halfCubeSize = 1.2f;
 
-    [Header("Generated Cells")]
+    [Header("Generated Faces")]
     public List<GridCell> cells = new List<GridCell>();
 
     private void Awake()
     {
-        CreateRubikCubeGrid();
+        CreateFiveFaceCube();
     }
 
-    private void CreateRubikCubeGrid()
+    private void CreateFiveFaceCube()
     {
         cells.Clear();
 
-        float offset = (cubeSize - 1) * spacing / 2f;
-        int index = 0;
+        CreateFace(
+            0,
+            "Voor",
+            new Vector3(0f, 0f, halfCubeSize),
+            new Vector3(faceSize, faceSize, faceThickness),
+            new Color(0f, 0.25f, 1f)
+        );
 
-        for (int x = 0; x < cubeSize; x++)
-        {
-            for (int y = 0; y < cubeSize; y++)
-            {
-                for (int z = 0; z < cubeSize; z++)
-                {
-                    bool isOuterCube =
-                        x == 0 || x == cubeSize - 1 ||
-                        y == 0 || y == cubeSize - 1 ||
-                        z == 0 || z == cubeSize - 1;
+        CreateFace(
+            1,
+            "Achter",
+            new Vector3(0f, 0f, -halfCubeSize),
+            new Vector3(faceSize, faceSize, faceThickness),
+            new Color(0f, 0.9f, 0.15f)
+        );
 
-                    if (!isOuterCube)
-                    {
-                        continue;
-                    }
+        CreateFace(
+            2,
+            "Links",
+            new Vector3(-halfCubeSize, 0f, 0f),
+            new Vector3(faceThickness, faceSize, faceSize),
+            new Color(1f, 0.45f, 0f)
+        );
 
-                    Vector3 position = new Vector3(
-                        x * spacing - offset,
-                        y * spacing - offset,
-                        z * spacing - offset
-                    );
+        CreateFace(
+            3,
+            "Rechts",
+            new Vector3(halfCubeSize, 0f, 0f),
+            new Vector3(faceThickness, faceSize, faceSize),
+            new Color(1f, 0f, 0f)
+        );
 
-                    GameObject cellObject = Instantiate(
-                        cellPrefab,
-                        position,
-                        Quaternion.identity,
-                        transform
-                    );
-
-                    cellObject.name = "CubeCell_" + index;
-
-                    GridCell cell = cellObject.GetComponent<GridCell>();
-
-                    if (cell == null)
-                    {
-                        cell = cellObject.AddComponent<GridCell>();
-                    }
-
-                    cell.index = index;
-                    cell.SetBaseColor(GetRubikColor(x, y, z));
-
-                    cells.Add(cell);
-                    index++;
-                }
-            }
-        }
+        CreateFace(
+            4,
+            "Boven",
+            new Vector3(0f, halfCubeSize, 0f),
+            new Vector3(faceSize, faceThickness, faceSize),
+            new Color(0.7f, 0f, 1f)
+        );
     }
 
-    private Color GetRubikColor(int x, int y, int z)
+    private void CreateFace(int index, string faceName, Vector3 position, Vector3 scale, Color color)
     {
-        if (y == cubeSize - 1)
-        {
-            return Color.white;
-        }
+        GameObject faceObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
-        if (y == 0)
-        {
-            return Color.yellow;
-        }
+        faceObject.name = "Face_" + faceName;
+        faceObject.transform.SetParent(transform);
+        faceObject.transform.localPosition = position;
+        faceObject.transform.localRotation = Quaternion.identity;
+        faceObject.transform.localScale = scale;
 
-        if (x == 0)
-        {
-            return new Color(1f, 0.45f, 0f);
-        }
+        GridCell cell = faceObject.AddComponent<GridCell>();
+        cell.index = index;
+        cell.faceName = faceName;
+        cell.faceRenderer = faceObject.GetComponent<Renderer>();
+        cell.SetBaseColor(color);
 
-        if (x == cubeSize - 1)
-        {
-            return Color.red;
-        }
-
-        if (z == 0)
-        {
-            return Color.blue;
-        }
-
-        if (z == cubeSize - 1)
-        {
-            return Color.green;
-        }
-
-        return new Color(0.35f, 0.35f, 0.35f);
+        cells.Add(cell);
     }
 
     public List<GridCell> GetCellsFacingPosition(Vector3 viewerPosition)
     {
-        List<GridCell> visibleCells = new List<GridCell>();
-
-        Vector3 viewerDirection = (viewerPosition - transform.position).normalized;
-
-        float absX = Mathf.Abs(viewerDirection.x);
-        float absY = Mathf.Abs(viewerDirection.y);
-        float absZ = Mathf.Abs(viewerDirection.z);
-
-        Vector3 faceDirection;
-
-        if (absY > absX && absY > absZ)
-        {
-            faceDirection = viewerDirection.y >= 0f ? Vector3.up : Vector3.down;
-        }
-        else if (absX > absZ)
-        {
-            faceDirection = viewerDirection.x >= 0f ? Vector3.right : Vector3.left;
-        }
-        else
-        {
-            faceDirection = viewerDirection.z >= 0f ? Vector3.forward : Vector3.back;
-        }
-
-        foreach (GridCell cell in cells)
-        {
-            Vector3 directionToCell = (cell.transform.position - transform.position).normalized;
-            float dot = Vector3.Dot(directionToCell, faceDirection);
-
-            if (dot > 0.55f)
-            {
-                visibleCells.Add(cell);
-            }
-        }
-
-        if (visibleCells.Count == 0)
-        {
-            visibleCells.AddRange(cells);
-        }
-
-        return visibleCells;
+        return cells;
     }
 }

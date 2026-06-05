@@ -13,13 +13,13 @@ public class DroneController : MonoBehaviour
     public float horizontalSmoothTime = 0.55f;
 
     [Header("Smooth Height Movement")]
-    public float heightChangeSpeed = 0.65f;
-    public float heightSmoothTime = 0.4f;
-    public float minHeight = -0.9f;
-    public float maxHeight = 0.9f;
+    public float heightChangeSpeed = 1.15f;
+    public float heightSmoothTime = 0.28f;
+    public float minHeight = -0.15f;
+    public float maxHeight = 2.35f;
 
     [Header("Input Delay")]
-    public float inputDelay = 0.08f;
+    public float inputDelay = 0.06f;
 
     [Header("Rotation Lock")]
     public bool lockRotation = true;
@@ -46,6 +46,11 @@ public class DroneController : MonoBehaviour
         get { return currentSpeed; }
     }
 
+    public float CurrentHeight
+    {
+        get { return currentHeight; }
+    }
+
     private void Start()
     {
         if (orbitCenter == null)
@@ -55,7 +60,7 @@ public class DroneController : MonoBehaviour
             orbitCenter = centerObject.transform;
         }
 
-        currentHeight = transform.position.y;
+        currentHeight = Mathf.Clamp(transform.position.y, minHeight, maxHeight);
         targetHeight = currentHeight;
         previousPosition = transform.position;
 
@@ -109,7 +114,8 @@ public class DroneController : MonoBehaviour
 
     private void ApplyHorizontalOrbit()
     {
-        float targetAngularSpeed = delayedInput.x * maxAngularSpeed;
+        // Min-teken zorgt dat links ook echt links voelt en rechts ook echt rechts.
+        float targetAngularSpeed = -delayedInput.x * maxAngularSpeed;
 
         currentAngularSpeed = Mathf.SmoothDamp(
             currentAngularSpeed,

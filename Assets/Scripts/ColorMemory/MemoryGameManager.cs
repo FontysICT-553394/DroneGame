@@ -15,15 +15,16 @@ public class MemoryGameManager : MonoBehaviour
 {
     [Header("References")]
     public GridManager gridManager;
-    public Transform droneTransform;
+    public CubeWinCinematic cubeWinCinematic;
     public TMP_Text scoreText;
     public TMP_Text roundText;
     public GameObject gameOverText;
 
     [Header("Sequence Settings")]
-    public float showTime = 1f;
-    public float pauseTime = 0.35f;
-    public float nextRoundDelay = 0.8f;
+    public float showTime = 1.2f;
+    public float pauseTime = 0.4f;
+    public float nextRoundDelay = 0.25f;
+    public float correctFlashTime = 0.25f;
 
     [Header("Score")]
     public int score = 0;
@@ -60,15 +61,7 @@ public class MemoryGameManager : MonoBehaviour
         round++;
 
         ResetAllCells();
-
-        bool addedNewCell = AddRandomVisibleCellToSequence();
-
-        if (!addedNewCell)
-        {
-            WinGame();
-            yield break;
-        }
-
+        AddRandomFaceToSequence();
         UpdateUI();
 
         yield return new WaitForSeconds(0.8f);
@@ -80,49 +73,38 @@ public class MemoryGameManager : MonoBehaviour
         currentState = GameState.PlayerTurn;
     }
 
-    private bool AddRandomVisibleCellToSequence()
+    private void AddRandomFaceToSequence()
     {
-        List<GridCell> possibleCells;
-
-        if (droneTransform != null)
+        if (gridManager.cells.Count == 0)
         {
-            possibleCells = gridManager.GetCellsFacingPosition(droneTransform.position);
-        }
-        else
-        {
-            possibleCells = gridManager.cells;
+            Debug.LogWarning("Geen vlakken gevonden in GridManager.");
+            return;
         }
 
-        List<GridCell> availableCells = new List<GridCell>();
+        List<GridCell> possibleFaces = new List<GridCell>();
 
-        foreach (GridCell cell in possibleCells)
+        foreach (GridCell cell in gridManager.cells)
         {
-            if (!sequence.Contains(cell.index))
+            possibleFaces.Add(cell);
+        }
+
+        if (sequence.Count > 0 && possibleFaces.Count > 1)
+        {
+            int lastIndex = sequence[sequence.Count - 1];
+
+            for (int i = possibleFaces.Count - 1; i >= 0; i--)
             {
-                availableCells.Add(cell);
-            }
-        }
-
-        if (availableCells.Count == 0)
-        {
-            foreach (GridCell cell in gridManager.cells)
-            {
-                if (!sequence.Contains(cell.index))
+                if (possibleFaces[i].index == lastIndex)
                 {
-                    availableCells.Add(cell);
+                    possibleFaces.RemoveAt(i);
                 }
             }
         }
 
-        if (availableCells.Count == 0)
-        {
-            return false;
-        }
+        GridCell randomFace = possibleFaces[Random.Range(0, possibleFaces.Count)];
+        sequence.Add(randomFace.index);
 
-        GridCell randomCell = availableCells[Random.Range(0, availableCells.Count)];
-        sequence.Add(randomCell.index);
-
-        return true;
+        Debug.Log("Nieuw vlak toegevoegd aan sequence: " + randomFace.faceName);
     }
 
     private IEnumerator ShowSequence()
@@ -135,6 +117,8 @@ public class MemoryGameManager : MonoBehaviour
             {
                 continue;
             }
+
+            Debug.Log("Sequence vlak: " + cell.faceName);
 
             cell.Highlight();
             yield return new WaitForSeconds(showTime);
@@ -151,25 +135,40 @@ public class MemoryGameManager : MonoBehaviour
             return;
         }
 
+        if (playerIndex < 0 || playerIndex >= sequence.Count)
+        {
+            return;
+        }
+
         int correctIndex = sequence[playerIndex];
 
         if (selectedIndex == correctIndex)
         {
-            HandleCorrectSelection(selectedIndex);
+            StartCoroutine(HandleCorrectSelectionRoutine(selectedIndex));
         }
         else
         {
-            HandleWrongSelection(selectedIndex);
+            StartCoroutine(HandleWrongSelectionRoutine(selectedIndex));
         }
     }
 
-    private void HandleCorrectSelection(int selectedIndex)
+    private IEnumerator HandleCorrectSelectionRoutine(int selectedIndex)
     {
+        currentState = GameState.ShowingSequence;
+
         GridCell selectedCell = GetCellByIndex(selectedIndex);
 
         if (selectedCell != null)
         {
-            selectedCell.SetCorrect();
+            selectedCell.SetCorrectFlash();
+            Debug.Log("Correct gekozen: " + selectedCell.faceName);
+        }
+
+        yield return new WaitForSeconds(correctFlashTime);
+
+        if (selectedCell != null)
+        {
+            selectedCell.SetNormal();
         }
 
         playerIndex++;
@@ -178,34 +177,39 @@ public class MemoryGameManager : MonoBehaviour
         {
             score++;
             UpdateUI();
-            StartCoroutine(NextRound());
+
+            if (cubeWinCinematic != null)
+            {
+                yield return StartCoroutine(cubeWinCinematic.PlayCinematic(round, score));
+            }
+            else
+            {
+                yield return new WaitForSeconds(nextRoundDelay);
+            }
+
+            yield return new WaitForSeconds(nextRoundDelay);
+
+            yield return StartCoroutine(StartNewRound());
+        }
+        else
+        {
+            currentState = GameState.PlayerTurn;
         }
     }
 
-    private void HandleWrongSelection(int selectedIndex)
+    private IEnumerator HandleWrongSelectionRoutine(int selectedIndex)
     {
+        currentState = GameState.GameOver;
+
         GridCell selectedCell = GetCellByIndex(selectedIndex);
 
         if (selectedCell != null)
         {
             selectedCell.SetWrong();
+            Debug.Log("Fout gekozen: " + selectedCell.faceName);
         }
 
-        currentState = GameState.GameOver;
-
-        if (gameOverText != null)
-        {
-            gameOverText.SetActive(true);
-        }
-
-        ShowRestartCell();
-
-        Debug.Log("Game Over!");
-    }
-
-    private void WinGame()
-    {
-        currentState = GameState.GameOver;
+        yield return new WaitForSeconds(0.5f);
 
         if (gameOverText != null)
         {
@@ -215,13 +219,11 @@ public class MemoryGameManager : MonoBehaviour
 
             if (gameOverLabel != null)
             {
-                gameOverLabel.text = "Je hebt alle blokjes gehad!\nBlijf stil bij het blauwe blokje om opnieuw te starten";
+                gameOverLabel.text = "Game Over!\nGa naar de voorzijde en druk op spatie om opnieuw te starten";
             }
         }
 
         ShowRestartCell();
-
-        Debug.Log("You Win!");
     }
 
     private void ShowRestartCell()
@@ -231,6 +233,11 @@ public class MemoryGameManager : MonoBehaviour
         if (restartCell != null)
         {
             restartCell.SetRestart();
+            Debug.Log("Restart vlak: " + restartCell.faceName);
+        }
+        else
+        {
+            Debug.LogWarning("Restart cell bestaat niet. Controleer Restart Cell Index.");
         }
     }
 
@@ -252,15 +259,6 @@ public class MemoryGameManager : MonoBehaviour
         {
             restartCell.SetRestart();
         }
-    }
-
-    private IEnumerator NextRound()
-    {
-        currentState = GameState.ShowingSequence;
-
-        yield return new WaitForSeconds(nextRoundDelay);
-
-        yield return StartCoroutine(StartNewRound());
     }
 
     public void RestartGame()

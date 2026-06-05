@@ -5,7 +5,7 @@ public enum CellVisualState
     Normal,
     Hover,
     Highlight,
-    Correct,
+    CorrectFlash,
     Wrong,
     Restart,
     RestartHover
@@ -14,25 +14,18 @@ public enum CellVisualState
 public class GridCell : MonoBehaviour
 {
     public int index;
+    public string faceName;
 
-    [Header("Renderer van ColorCube")]
-    public Renderer colorRenderer;
+    [Header("Renderer")]
+    public Renderer faceRenderer;
 
-    [Header("Outline Settings")]
-    public bool createOutline = true;
-    public Material outlineMaterial;
-    public float edgeThickness = 0.06f;
-    public float edgeLength = 1.05f;
-
+    private Collider faceCollider;
     private CellVisualState currentState;
-    private Color baseColor = new Color(0.35f, 0.35f, 0.35f);
 
-    private Color hoverColor = new Color(0.85f, 0.1f, 1f);
-    private Color highlightColor = new Color(1f, 0f, 1f);
-    private Color correctColor = new Color(0.1f, 1f, 0.2f);
-    private Color wrongColor = new Color(1f, 0.05f, 0.05f);
-    private Color restartColor = new Color(0f, 0.25f, 1f);
-    private Color restartHoverColor = new Color(0f, 1f, 1f);
+    private Color baseColor = Color.gray;
+    private Color wrongColor = new Color(1f, 0f, 0f);
+    private Color restartColor = new Color(1f, 0f, 1f);
+    private Color correctFlashColor = Color.white;
 
     private Vector3 originalScale;
 
@@ -40,85 +33,14 @@ public class GridCell : MonoBehaviour
     {
         originalScale = transform.localScale;
 
-        FindColorRenderer();
-
-        if (createOutline)
+        if (faceRenderer == null)
         {
-            CreateOutlineEdges();
+            faceRenderer = GetComponent<Renderer>();
         }
+
+        faceCollider = GetComponent<Collider>();
 
         SetNormal();
-    }
-
-    private void FindColorRenderer()
-    {
-        if (colorRenderer != null)
-        {
-            return;
-        }
-
-        Transform colorCube = transform.Find("ColorCube");
-
-        if (colorCube != null)
-        {
-            colorRenderer = colorCube.GetComponent<Renderer>();
-        }
-
-        if (colorRenderer == null)
-        {
-            colorRenderer = GetComponentInChildren<Renderer>();
-        }
-    }
-
-    private void CreateOutlineEdges()
-    {
-        if (transform.Find("Edge_Top_Front") != null)
-        {
-            return;
-        }
-
-        CreateEdge("Edge_Top_Front", new Vector3(0, 0.53f, 0.53f), new Vector3(edgeLength, edgeThickness, edgeThickness));
-        CreateEdge("Edge_Top_Back", new Vector3(0, 0.53f, -0.53f), new Vector3(edgeLength, edgeThickness, edgeThickness));
-        CreateEdge("Edge_Bottom_Front", new Vector3(0, -0.53f, 0.53f), new Vector3(edgeLength, edgeThickness, edgeThickness));
-        CreateEdge("Edge_Bottom_Back", new Vector3(0, -0.53f, -0.53f), new Vector3(edgeLength, edgeThickness, edgeThickness));
-
-        CreateEdge("Edge_Left_Front", new Vector3(-0.53f, 0, 0.53f), new Vector3(edgeThickness, edgeLength, edgeThickness));
-        CreateEdge("Edge_Left_Back", new Vector3(-0.53f, 0, -0.53f), new Vector3(edgeThickness, edgeLength, edgeThickness));
-        CreateEdge("Edge_Right_Front", new Vector3(0.53f, 0, 0.53f), new Vector3(edgeThickness, edgeLength, edgeThickness));
-        CreateEdge("Edge_Right_Back", new Vector3(0.53f, 0, -0.53f), new Vector3(edgeThickness, edgeLength, edgeThickness));
-
-        CreateEdge("Edge_Top_Left", new Vector3(-0.53f, 0.53f, 0), new Vector3(edgeThickness, edgeThickness, edgeLength));
-        CreateEdge("Edge_Top_Right", new Vector3(0.53f, 0.53f, 0), new Vector3(edgeThickness, edgeThickness, edgeLength));
-        CreateEdge("Edge_Bottom_Left", new Vector3(-0.53f, -0.53f, 0), new Vector3(edgeThickness, edgeThickness, edgeLength));
-        CreateEdge("Edge_Bottom_Right", new Vector3(0.53f, -0.53f, 0), new Vector3(edgeThickness, edgeThickness, edgeLength));
-    }
-
-    private void CreateEdge(string edgeName, Vector3 localPosition, Vector3 localScale)
-    {
-        GameObject edge = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        edge.name = edgeName;
-        edge.transform.SetParent(transform);
-        edge.transform.localPosition = localPosition;
-        edge.transform.localRotation = Quaternion.identity;
-        edge.transform.localScale = localScale;
-
-        Collider edgeCollider = edge.GetComponent<Collider>();
-
-        if (edgeCollider != null)
-        {
-            Destroy(edgeCollider);
-        }
-
-        Renderer edgeRenderer = edge.GetComponent<Renderer>();
-
-        if (outlineMaterial != null)
-        {
-            edgeRenderer.material = outlineMaterial;
-        }
-        else
-        {
-            edgeRenderer.material.color = Color.black;
-        }
     }
 
     public void SetBaseColor(Color color)
@@ -136,13 +58,13 @@ public class GridCell : MonoBehaviour
     {
         currentState = CellVisualState.Normal;
         transform.localScale = originalScale;
-        SetColor(baseColor);
+        SetColor(baseColor, 0.15f);
     }
 
     public void SetHover()
     {
         if (currentState == CellVisualState.Highlight ||
-            currentState == CellVisualState.Correct ||
+            currentState == CellVisualState.CorrectFlash ||
             currentState == CellVisualState.Wrong ||
             currentState == CellVisualState.Restart ||
             currentState == CellVisualState.RestartHover)
@@ -151,43 +73,64 @@ public class GridCell : MonoBehaviour
         }
 
         currentState = CellVisualState.Hover;
-        transform.localScale = originalScale * 1.08f;
-        SetColor(hoverColor);
+
+        // Niet groter maken bij selecteren/hover.
+        transform.localScale = originalScale;
+
+        Color brighterColor = MakeBrighter(baseColor, 1.6f);
+        SetColor(brighterColor, 0.75f);
     }
 
     public void Highlight()
     {
         currentState = CellVisualState.Highlight;
-        transform.localScale = originalScale * 1.18f;
-        SetColor(highlightColor);
+
+        // Alleen bij de sequence groter maken.
+        transform.localScale = originalScale * 1.1f;
+
+        Color brighterColor = MakeBrighter(baseColor, 2.2f);
+        SetColor(brighterColor, 1.2f);
     }
 
-    public void SetCorrect()
+    public void SetCorrectFlash()
     {
-        currentState = CellVisualState.Correct;
-        transform.localScale = originalScale * 1.12f;
-        SetColor(correctColor);
+        currentState = CellVisualState.CorrectFlash;
+
+        // Niet groter maken bij correcte selectie.
+        transform.localScale = originalScale;
+
+        SetColor(correctFlashColor, 1.2f);
     }
 
     public void SetWrong()
     {
         currentState = CellVisualState.Wrong;
-        transform.localScale = originalScale * 1.12f;
-        SetColor(wrongColor);
+
+        // Niet groter maken bij fout.
+        transform.localScale = originalScale;
+
+        SetColor(wrongColor, 1f);
     }
 
     public void SetRestart()
     {
         currentState = CellVisualState.Restart;
-        transform.localScale = originalScale * 1.12f;
-        SetColor(restartColor);
+
+        // Niet groter maken bij restart.
+        transform.localScale = originalScale;
+
+        SetColor(restartColor, 1f);
     }
 
     public void SetRestartHover()
     {
         currentState = CellVisualState.RestartHover;
-        transform.localScale = originalScale * 1.18f;
-        SetColor(restartHoverColor);
+
+        // Niet groter maken bij restart hover.
+        transform.localScale = originalScale;
+
+        Color brighterRestart = MakeBrighter(restartColor, 1.6f);
+        SetColor(brighterRestart, 1.2f);
     }
 
     public bool IsTemporaryState()
@@ -195,17 +138,45 @@ public class GridCell : MonoBehaviour
         return currentState == CellVisualState.Hover;
     }
 
-    private void SetColor(Color color)
+    public float GetDistanceToPoint(Vector3 point)
     {
-        if (colorRenderer != null)
+        if (faceCollider == null)
         {
-            colorRenderer.material.color = color;
+            return Vector3.Distance(transform.position, point);
+        }
 
-            if (colorRenderer.material.HasProperty("_EmissionColor"))
-            {
-                colorRenderer.material.EnableKeyword("_EMISSION");
-                colorRenderer.material.SetColor("_EmissionColor", color * 0.35f);
-            }
+        Vector3 closestPoint = faceCollider.ClosestPoint(point);
+        return Vector3.Distance(point, closestPoint);
+    }
+
+    private Color MakeBrighter(Color color, float multiplier)
+    {
+        return new Color(
+            Mathf.Clamp01(color.r * multiplier),
+            Mathf.Clamp01(color.g * multiplier),
+            Mathf.Clamp01(color.b * multiplier),
+            color.a
+        );
+    }
+
+    private void SetColor(Color color, float emissionStrength)
+    {
+        if (faceRenderer == null)
+        {
+            return;
+        }
+
+        faceRenderer.material.color = color;
+
+        if (faceRenderer.material.HasProperty("_BaseColor"))
+        {
+            faceRenderer.material.SetColor("_BaseColor", color);
+        }
+
+        if (faceRenderer.material.HasProperty("_EmissionColor"))
+        {
+            faceRenderer.material.EnableKeyword("_EMISSION");
+            faceRenderer.material.SetColor("_EmissionColor", color * emissionStrength);
         }
     }
 }

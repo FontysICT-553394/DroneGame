@@ -7,21 +7,29 @@ public class DroneSelector : MonoBehaviour
     public GridManager gridManager;
     public DroneController droneController;
 
-    [Header("Cell Selection")]
-    public float selectDistance = 1.45f;
-    public float selectHoverTime = 1.1f;
-    public float maxSelectionSpeed = 0.65f;
+    [Header("Normal Face Selection")]
+    public float selectDistance = 1.15f;
+    public float topFaceSelectDistance = 1.7f;
 
-    [Header("Restart Selection")]
-    public float restartDistance = 1.45f;
-    public float restartHoverTime = 1.5f;
-    public float maxRestartSpeed = 0.65f;
+    [Header("Manual Selection")]
+    public KeyCode selectKey = KeyCode.Space;
+    public bool allowSpaceSelection = true;
+
+    [Header("Game Over Restart Selection")]
+    public float restartDistance = 1.4f;
+
+    [Header("Start Selection Safety")]
+    public float requiredMoveDistanceBeforeSelect = 0.25f;
 
     private GridCell currentHoverCell;
-    private float cellHoverTimer = 0f;
-    private float restartHoverTimer = 0f;
-    private bool hasSelectedCurrentCell = false;
-    private bool isHoveringRestartCell = false;
+    private GridCell currentRestartCell;
+
+    private bool wasPlayerTurn = false;
+
+    // Alleen bij de eerste spelerbeurt nodig.
+    private bool hasUnlockedSelectionOnce = false;
+    private bool hasMovedBeforeFirstSelection = false;
+    private Vector3 firstPlayerTurnStartPosition;
 
     private void Awake()
     {
@@ -33,129 +41,211 @@ public class DroneSelector : MonoBehaviour
 
     private void Update()
     {
-        if (memoryGameManager.IsPlayerTurn())
-        {
-            HandleCellHoverSelection();
-        }
-        else
-        {
-            ClearCurrentHover();
-        }
-
         if (memoryGameManager.IsGameOver())
         {
-            HandleRestartHoverSelection();
+            wasPlayerTurn = false;
+            ClearCurrentHover();
+            HandleRestartHover();
+            HandleRestartSpaceSelection();
+            return;
+        }
+
+        ClearRestartHover();
+
+        if (memoryGameManager.IsPlayerTurn())
+        {
+            if (!wasPlayerTurn)
+            {
+                BeginPlayerTurn();
+            }
+
+            if (!hasUnlockedSelectionOnce)
+            {
+                CheckIfDroneMovedEnoughAtStart();
+
+                if (!hasMovedBeforeFirstSelection)
+                {
+                    ClearCurrentHover();
+                    return;
+                }
+
+                hasUnlockedSelectionOnce = true;
+                Debug.Log("Eerste beweging gedaan. Selecteren met spatie is nu actief.");
+            }
+
+            HandleFaceHover();
+            HandleSpaceSelection();
         }
         else
         {
-            restartHoverTimer = 0f;
-            isHoveringRestartCell = false;
+            wasPlayerTurn = false;
+            ClearCurrentHover();
         }
     }
 
-    private void HandleCellHoverSelection()
+    private void BeginPlayerTurn()
     {
-        GridCell closestCell = GetClosestCell();
+        wasPlayerTurn = true;
+        ClearCurrentHover();
 
-        if (closestCell == null)
+        if (!hasUnlockedSelectionOnce)
+        {
+            hasMovedBeforeFirstSelection = false;
+            firstPlayerTurnStartPosition = transform.position;
+
+            Debug.Log("Eerste spelerbeurt gestart. Beweeg eerst voordat je kunt selecteren.");
+        }
+    }
+
+    private void CheckIfDroneMovedEnoughAtStart()
+    {
+        float movedDistance = Vector3.Distance(transform.position, firstPlayerTurnStartPosition);
+
+        if (movedDistance >= requiredMoveDistanceBeforeSelect)
+        {
+            hasMovedBeforeFirstSelection = true;
+        }
+    }
+
+    private void HandleFaceHover()
+    {
+        GridCell closestFace = GetClosestFace();
+
+        if (closestFace == null)
         {
             ClearCurrentHover();
             return;
         }
 
-        float distance = Vector3.Distance(transform.position, closestCell.transform.position);
-        float currentSpeed = GetDroneSpeed();
+        float distance = closestFace.GetDistanceToPoint(transform.position);
+        float allowedDistance = GetAllowedSelectDistance(closestFace);
 
-        if (distance > selectDistance)
+        if (distance > allowedDistance)
         {
             ClearCurrentHover();
             return;
         }
 
-        if (currentHoverCell != closestCell)
+        if (currentHoverCell != closestFace)
         {
             ClearCurrentHover();
 
-            currentHoverCell = closestCell;
+            currentHoverCell = closestFace;
             currentHoverCell.SetHover();
 
-            cellHoverTimer = 0f;
-            hasSelectedCurrentCell = false;
-        }
-
-        if (currentSpeed > maxSelectionSpeed)
-        {
-            cellHoverTimer = 0f;
-            return;
-        }
-
-        cellHoverTimer += Time.deltaTime;
-
-        if (cellHoverTimer >= selectHoverTime && !hasSelectedCurrentCell)
-        {
-            hasSelectedCurrentCell = true;
-            memoryGameManager.SelectCell(currentHoverCell.index);
+            Debug.Log("Hover vlak: " + currentHoverCell.faceName);
         }
     }
 
-    private void HandleRestartHoverSelection()
+    private void HandleSpaceSelection()
     {
-        int restartCellIndex = memoryGameManager.GetRestartCellIndex();
-
-        GridCell restartCell = GetCellByIndex(restartCellIndex);
-
-        if (restartCell == null)
+        if (!allowSpaceSelection)
         {
             return;
         }
 
-        float distance = Vector3.Distance(transform.position, restartCell.transform.position);
-        float currentSpeed = GetDroneSpeed();
-
-        if (distance <= restartDistance && currentSpeed <= maxRestartSpeed)
+        if (!Input.GetKeyDown(selectKey))
         {
-            if (!isHoveringRestartCell)
-            {
-                memoryGameManager.SetRestartCellHover();
-                isHoveringRestartCell = true;
-            }
+            return;
+        }
 
-            restartHoverTimer += Time.deltaTime;
+        if (currentHoverCell == null)
+        {
+            Debug.Log("Geen vlak om te selecteren.");
+            return;
+        }
 
-            if (restartHoverTimer >= restartHoverTime)
-            {
-                memoryGameManager.RestartGame();
-            }
+        Debug.Log("Geselecteerd met spatie: " + currentHoverCell.faceName);
+        memoryGameManager.SelectCell(currentHoverCell.index);
+    }
+
+    private void HandleRestartHover()
+    {
+        int restartCellIndex = memoryGameManager.GetRestartCellIndex();
+        GridCell restartFace = GetCellByIndex(restartCellIndex);
+
+        if (restartFace == null)
+        {
+            Debug.LogWarning("Restart vlak niet gevonden. Controleer Restart Cell Index.");
+            return;
+        }
+
+        currentRestartCell = restartFace;
+
+        float distance = restartFace.GetDistanceToPoint(transform.position);
+
+        if (distance <= restartDistance)
+        {
+            memoryGameManager.SetRestartCellHover();
         }
         else
         {
-            if (isHoveringRestartCell)
-            {
-                memoryGameManager.SetRestartCellNormal();
-            }
-
-            isHoveringRestartCell = false;
-            restartHoverTimer = 0f;
+            memoryGameManager.SetRestartCellNormal();
         }
     }
 
-    private GridCell GetClosestCell()
+    private void HandleRestartSpaceSelection()
     {
-        GridCell closestCell = null;
+        if (!allowSpaceSelection)
+        {
+            return;
+        }
+
+        if (!Input.GetKeyDown(selectKey))
+        {
+            return;
+        }
+
+        if (currentRestartCell == null)
+        {
+            Debug.Log("Geen restart vlak gevonden.");
+            return;
+        }
+
+        float distance = currentRestartCell.GetDistanceToPoint(transform.position);
+
+        if (distance > restartDistance)
+        {
+            Debug.Log("Je bent niet dicht genoeg bij het restart-vlak.");
+            return;
+        }
+
+        Debug.Log("Restart met spatie via vlak: " + currentRestartCell.faceName);
+        memoryGameManager.RestartGame();
+    }
+
+    private GridCell GetClosestFace()
+    {
+        GridCell closestFace = null;
         float closestDistance = float.MaxValue;
 
         foreach (GridCell cell in gridManager.cells)
         {
-            float distance = Vector3.Distance(transform.position, cell.transform.position);
+            float distance = cell.GetDistanceToPoint(transform.position);
+
+            if (cell.faceName == "Boven")
+            {
+                distance *= 0.75f;
+            }
 
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                closestCell = cell;
+                closestFace = cell;
             }
         }
 
-        return closestCell;
+        return closestFace;
+    }
+
+    private float GetAllowedSelectDistance(GridCell cell)
+    {
+        if (cell.faceName == "Boven")
+        {
+            return topFaceSelectDistance;
+        }
+
+        return selectDistance;
     }
 
     private GridCell GetCellByIndex(int index)
@@ -171,16 +261,6 @@ public class DroneSelector : MonoBehaviour
         return null;
     }
 
-    private float GetDroneSpeed()
-    {
-        if (droneController == null)
-        {
-            return 0f;
-        }
-
-        return droneController.CurrentSpeed;
-    }
-
     private void ClearCurrentHover()
     {
         if (currentHoverCell != null && currentHoverCell.IsTemporaryState())
@@ -189,7 +269,10 @@ public class DroneSelector : MonoBehaviour
         }
 
         currentHoverCell = null;
-        cellHoverTimer = 0f;
-        hasSelectedCurrentCell = false;
+    }
+
+    private void ClearRestartHover()
+    {
+        currentRestartCell = null;
     }
 }
