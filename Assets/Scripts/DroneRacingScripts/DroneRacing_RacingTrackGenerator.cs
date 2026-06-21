@@ -29,6 +29,7 @@ public class RacingTrackGenerator : MonoBehaviour
     {
         initialTrackSegment = Instantiate(trackSegmentPrefab, Vector3.zero, Quaternion.identity);
         initialTrackSegment.transform.position = new Vector3(0f, 0f, 0f);
+        ConfigureTrackPhysics(initialTrackSegment);
         trackSegments.Add(initialTrackSegment);
     }
 
@@ -42,6 +43,8 @@ public class RacingTrackGenerator : MonoBehaviour
             new Vector3(trackSegments.Count * trackSegmentLength, 0f, 0f),
             Quaternion.identity
         );
+
+        ConfigureTrackPhysics(newTrackSegment);
 
         trackSegments.Add(newTrackSegment);
 
@@ -70,20 +73,24 @@ public class RacingTrackGenerator : MonoBehaviour
         Vector3 finishPos = lastTrack.transform.position + new Vector3(trackSegmentLength, 0f, 0f);
 
         GameObject finishLine = Instantiate(finishLinePrefab, finishPos, Quaternion.identity);
+        ConfigureTrackPhysics(finishLine);
 
         Rigidbody rb = finishLine.GetComponent<Rigidbody>();
         if (rb != null)
             rb.linearVelocity = Vector3.right * 8f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         foreach (var trackSegment in trackSegments)
         {
             if (trackSegment == null) continue;
 
             Rigidbody trackSegmentRb = trackSegment.GetComponent<Rigidbody>();
-            trackSegmentRb.linearVelocity = Vector3.right * 8f;
+            if (trackSegmentRb != null)
+            {
+                trackSegmentRb.linearVelocity = Vector3.right * 8f;
+            }
         }
 
         if (tracksPlaced >= tracksToPlaceForFinish)
@@ -99,6 +106,22 @@ public class RacingTrackGenerator : MonoBehaviour
         for (trackSegmentCounter = trackSegments.Count; trackSegmentCounter < trackSegmentAmount; trackSegmentCounter++)
         {
             AddTrackSegment();
+        }
+    }
+
+    private void ConfigureTrackPhysics(GameObject trackObject)
+    {
+        if (trackObject == null)
+        {
+            return;
+        }
+
+        Rigidbody rb = trackObject.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
+            rb.isKinematic = false;
         }
     }
 }

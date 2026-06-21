@@ -1,7 +1,7 @@
 # Devlog 1 - Roksana
 
-## Datum
-- 08/05/2026 
+Implementatiedocument: zie `Implementatiedocument.md`.
+
 
 ## Wat was de doel? 
 - Ik wou vandaag graag de racing track klaar maken zodat ik altijd een bewegende track heb in beeld. 
@@ -38,9 +38,6 @@ In de avond heb ik nog thuis gewerkt aan de obstacles, ik heb nu een soort obsta
 
 ----------------------------------------------------------------------
 # Devlog 2 - Roksana
-
-## Datum 
-- 09/05/2026
 
 ## Wat wa het doel? 
 - Model voor air obstacle 
@@ -82,8 +79,6 @@ Als volgt ga ik werken aan het verfijnen van mijn obstakel logic die nu op elke 
 ----------------------------------------------------------------------
 # Devlog 3 - Roksana
 
-## Datum 
-- 10/05/2026
 
 ## Wat wa het doel? 
 - Finish maken om de game "haalbaar" te maken. 
@@ -115,3 +110,5 @@ Als volgt ga ik death logica ontwikkelen en wat extra models maken voor variatie
 
 ## Feedback 
 Ik heb als feedback gekregen dat ik nog goed moet nadenken of ik de game wil laten in zijn "race" style of dat ik misschien beter wat meer mijn design kan richten op een vliegende drone, dus bv dingen ontwijken in de lucht? Ik moet ook nadenken over wat de batterijen gaan doen in mijn game, gaan dit alleen maar items zijn waarmee ik iets kan opladen?? Ik moet ook de design van mijn drone player aanpassen zodat hij meer als een drone voelt. 
+
+# Devlog 4 - Roksana
