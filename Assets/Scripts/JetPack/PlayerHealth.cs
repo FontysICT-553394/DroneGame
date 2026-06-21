@@ -1,24 +1,82 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int health = 3;
+    [Header("Health")]
+    [SerializeField] private int maxHealth = 3;
+    [SerializeField] private HeartHUD heartHUD;
 
-    public void TakeDamage()
+    [Header("Damage Feedback")]
+    [SerializeField] private PlayerDamageFlash damageFlash;
+
+    [Header("Damage Cooldown")]
+    [SerializeField] private float invincibleTime = 1f;
+
+    private int currentHealth;
+    private bool isInvincible;
+
+    private void Start()
     {
-        health--;
+        currentHealth = maxHealth;
 
-        Debug.Log("Health: " + health);
-
-        if (health <= 0)
+        if (heartHUD != null)
         {
-            Die();
+            heartHUD.UpdateHearts(currentHealth);
         }
     }
 
-    void Die()
+    public void TakeDamage()
     {
-        GameManager.Instance.GameOver();
+        if (GameManager.Instance != null && !GameManager.Instance.GameRunning)
+        {
+            return;
+        }
+
+        if (isInvincible)
+        {
+            return;
+        }
+
+        currentHealth--;
+
+        if (damageFlash != null)
+        {
+            damageFlash.Flash();
+        }
+
+        if (heartHUD != null)
+        {
+            heartHUD.UpdateHearts(currentHealth);
+        }
+
+        Debug.Log("Health: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+            return;
+        }
+
+        StartCoroutine(Invincibility());
+    }
+
+    private IEnumerator Invincibility()
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(invincibleTime);
+
+        isInvincible = false;
+    }
+
+    private void Die()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameOver();
+        }
+
         gameObject.SetActive(false);
     }
 }
