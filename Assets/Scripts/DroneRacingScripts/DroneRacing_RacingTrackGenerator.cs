@@ -17,6 +17,7 @@ public class RacingTrackGenerator : MonoBehaviour
     public int trackSegmentAmount = 5;
     public int trackSegmentCounter = 1;
     public float trackSegmentLength = -64.05f;
+    private float trackSpeed = 8f;
 
     private int tracksPlaced = 0;
     [SerializeField] private int tracksToPlaceForFinish = 10;
@@ -27,6 +28,7 @@ public class RacingTrackGenerator : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SyncRuntimeSettings();
         initialTrackSegment = Instantiate(trackSegmentPrefab, Vector3.zero, Quaternion.identity);
         initialTrackSegment.transform.position = new Vector3(0f, 0f, 0f);
         ConfigureTrackPhysics(initialTrackSegment);
@@ -82,16 +84,11 @@ public class RacingTrackGenerator : MonoBehaviour
 
     void FixedUpdate()
     {
-        foreach (var trackSegment in trackSegments)
-        {
-            if (trackSegment == null) continue;
+        SyncRuntimeSettings();
+        MoveTrackSegments();
 
-            Rigidbody trackSegmentRb = trackSegment.GetComponent<Rigidbody>();
-            if (trackSegmentRb != null)
-            {
-                trackSegmentRb.linearVelocity = Vector3.right * 8f;
-            }
-        }
+        if (!DroneRacingRuntimeSettings.GenerateTracks)
+            return;
 
         if (tracksPlaced >= tracksToPlaceForFinish)
         {
@@ -107,6 +104,27 @@ public class RacingTrackGenerator : MonoBehaviour
         {
             AddTrackSegment();
         }
+    }
+
+    private void MoveTrackSegments()
+    {
+        foreach (var trackSegment in trackSegments)
+        {
+            if (trackSegment == null) continue;
+
+            Rigidbody trackSegmentRb = trackSegment.GetComponent<Rigidbody>();
+            if (trackSegmentRb != null)
+            {
+                trackSegmentRb.linearVelocity = Vector3.right * trackSpeed;
+            }
+        }
+    }
+
+    private void SyncRuntimeSettings()
+    {
+        trackSegmentAmount = Mathf.Max(1, DroneRacingRuntimeSettings.TrackSegmentAmount);
+        tracksToPlaceForFinish = Mathf.Max(1, DroneRacingRuntimeSettings.TracksToPlaceForFinish);
+        trackSpeed = Mathf.Max(0f, DroneRacingRuntimeSettings.TrackSpeed);
     }
 
     private void ConfigureTrackPhysics(GameObject trackObject)

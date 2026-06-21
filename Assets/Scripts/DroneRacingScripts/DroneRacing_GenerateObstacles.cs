@@ -70,6 +70,9 @@ public class GenerateObstacles : MonoBehaviour
 
     private void PlaceObstacle(Transform obstaclePosition)
     {
+        if (!DroneRacingRuntimeSettings.GenerateObstacles)
+            return;
+
         GameObject randomObstaclePrefab = ObstaclePrefabs[Random.Range(0, ObstaclePrefabs.Count)];
 
         GameObject newObstacle = Instantiate(
@@ -85,6 +88,9 @@ public class GenerateObstacles : MonoBehaviour
 
     private void PlaceAirObstacle(Transform airObstaclePosition)
     {
+        if (!DroneRacingRuntimeSettings.GenerateObstacles)
+            return;
+
         if (airObstaclePosition != null && SafeCompareTag(airObstaclePosition, "PlaneObstacleNode"))
         {
             if (planePrefab == null)
@@ -138,6 +144,9 @@ public class GenerateObstacles : MonoBehaviour
 
     private void PlaceBatteryOnEmptyNodes()
     {
+        if (!DroneRacingRuntimeSettings.GenerateBatteries)
+            return;
+
         List<Transform> emptyNodes = nodeStatus
             .Where(kvp => kvp.Key != null && kvp.Value == ObstacleStatus.Empty)
             .Select(kvp => kvp.Key)
@@ -165,6 +174,12 @@ public class GenerateObstacles : MonoBehaviour
     {
         if (playerTransform == null)
             TryResolvePlayerTransform();
+
+        if (!DroneRacingRuntimeSettings.GenerateObstacles)
+        {
+            pendingPlaneNodes.Clear();
+            return;
+        }
 
         if (pendingPlaneNodes.Count == 0)
         {
@@ -354,7 +369,7 @@ public class GenerateObstacles : MonoBehaviour
     {
         GetAllObstacleSegments(trackSegment);
 
-        if (!warnedNoPlaneNodesWithPlanePrefab && planePrefab != null && pendingPlaneNodes.Count == 0)
+        if (DroneRacingRuntimeSettings.GenerateObstacles && !warnedNoPlaneNodesWithPlanePrefab && planePrefab != null && pendingPlaneNodes.Count == 0)
         {
             bool tagDefined = true;
 
@@ -381,6 +396,17 @@ public class GenerateObstacles : MonoBehaviour
 
         if (debugPlaneSpawning)
             Debug.Log($"[GenerateObstacles] '{name}' rows: air={airObstacleRows.Count}, ground={obstacleRows.Count}, pendingPlanes={pendingPlaneNodes.Count}");
+
+        if (!DroneRacingRuntimeSettings.GenerateObstacles)
+        {
+            foreach (var airObstacleRow in airObstacleRows)
+            {
+                PlaceBannerOnRow(airObstacleRow);
+            }
+
+            PlaceBatteryOnEmptyNodes();
+            return;
+        }
 
         foreach (var airObstacleRow in airObstacleRows)
         {
@@ -472,10 +498,17 @@ public class GenerateObstacles : MonoBehaviour
                 if (planeNode == null)
                     continue;
 
-                nodeStatus[planeNode] = ObstacleStatus.Occupied;
+                if (DroneRacingRuntimeSettings.GenerateObstacles)
+                {
+                    nodeStatus[planeNode] = ObstacleStatus.Occupied;
 
-                if (!pendingPlaneNodes.Contains(planeNode))
-                    pendingPlaneNodes.Add(planeNode);
+                    if (!pendingPlaneNodes.Contains(planeNode))
+                        pendingPlaneNodes.Add(planeNode);
+                }
+                else
+                {
+                    nodeStatus[planeNode] = ObstacleStatus.Empty;
+                }
             }
 
             if (debugPlaneSpawning)
