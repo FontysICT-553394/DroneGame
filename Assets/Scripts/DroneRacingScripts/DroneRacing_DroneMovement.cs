@@ -43,13 +43,13 @@ public class DroneMovementRacingDrone : MonoBehaviour
     [SerializeField] private int maxObstacleHits = 3;
 
     [Tooltip("How long the drone feels unstable after each hit.")]
-    [SerializeField] private float drunkDuration = 2.5f;
+    [SerializeField] private float drunkDuration = 3f;
 
-    [Tooltip("How strong the drunk movement is per hit. Higher = more unstable.")]
-    [SerializeField] private float drunkStrengthPerHit = 0.35f;
+    [Tooltip("How strong the drunk movement is. Higher = more unstable.")]
+    [SerializeField] private float drunkStrengthPerHit = 0.75f;
 
     [Tooltip("How fast the drunk movement changes direction.")]
-    [SerializeField] private float drunkInputNoiseSpeed = 8f;
+    [SerializeField] private float drunkInputNoiseSpeed = 12f;
 
     [Tooltip("Small side push on hit. Keep low to avoid crazy movement.")]
     [SerializeField] private float hitSidePush = 2.5f;
@@ -57,8 +57,17 @@ public class DroneMovementRacingDrone : MonoBehaviour
     [Tooltip("How much velocity remains after hit. Lower = impact feels heavier.")]
     [SerializeField] private float hitVelocityDamping = 0.35f;
 
+    [Tooltip("Extra impulsive drift after hit. Higher = more obvious side pull.")]
+    [SerializeField] private float drunkVelocityPushPerHit = 2.5f;
+
+    [Tooltip("How long the hit push keeps pulling after impact.")]
+    [SerializeField] private float drunkPushDuration = 0.45f;
+
+    private Vector2 drunkPushDirection;
+    private float drunkPushTimer;
+
     [Header("Heart UI")]
-    [Tooltip("Sleep hier je 3 heart UI images in, van links naar rechts of van boven naar beneden.")]
+    [Tooltip("Sleep hier je 3 heart UI images in.")]
     [SerializeField] private RectTransform[] heartImages;
 
     [Tooltip("Hoe ver een heart naar beneden zakt als je een hit krijgt.")]
@@ -86,7 +95,7 @@ public class DroneMovementRacingDrone : MonoBehaviour
     [Tooltip("Extra delay nadat de vloer geraakt is voordat death screen opent.")]
     [SerializeField] private float deathScreenAfterFloorDelay = 0.35f;
 
-    [Tooltip("Welke tags tellen als vloer.")]
+    [Tooltip("Welke tag telt als vloer.")]
     [SerializeField] private string floorTag = "Ground";
 
     [SerializeField] private bool pauseTimeWhenDeathScreenOpens = true;
@@ -226,16 +235,23 @@ public class DroneMovementRacingDrone : MonoBehaviour
         if (DroneRacingRuntimeSettings.DamageEnabled && drunkTimer > 0f)
         {
             float hitRatio = Mathf.Clamp01((float)obstacleHitsTaken / maxObstacleHits);
-            float drunkStrength = drunkStrengthPerHit * hitRatio;
+            float drunkStrength = drunkStrengthPerHit * Mathf.Lerp(0.65f, 1.4f, hitRatio);
 
             float noiseX = Mathf.PerlinNoise(drunkSeedX, Time.time * drunkInputNoiseSpeed) * 2f - 1f;
             float noiseY = Mathf.PerlinNoise(drunkSeedY, Time.time * drunkInputNoiseSpeed) * 2f - 1f;
 
             Vector2 drunkOffset = new Vector2(noiseX, noiseY) * drunkStrength;
-
             finalInput += drunkOffset;
-            finalInput = Vector2.ClampMagnitude(finalInput, 1f);
         }
+
+        if (drunkPushTimer > 0f)
+        {
+            float pushStrength = drunkPushTimer / drunkPushDuration;
+            finalInput += drunkPushDirection * pushStrength;
+            drunkPushTimer -= Time.fixedDeltaTime;
+        }
+
+        finalInput = Vector2.ClampMagnitude(finalInput, 1.4f);
 
         delayedInput = Vector2.Lerp(
             delayedInput,
@@ -331,10 +347,28 @@ public class DroneMovementRacingDrone : MonoBehaviour
             sideDirection = Random.value < 0.5f ? -1f : 1f;
         }
 
+        float hitRatio = Mathf.Clamp01((float)obstacleHitsTaken / maxObstacleHits);
+
+        drunkPushDirection = new Vector2(
+            Random.Range(-1f, 1f),
+            Random.Range(-0.7f, 0.7f)
+        ).normalized;
+
+        drunkPushTimer = drunkPushDuration;
+
         rb.linearVelocity *= hitVelocityDamping;
         rb.angularVelocity = Vector3.zero;
 
         rb.AddForce(transform.right * sideDirection * hitSidePush, ForceMode.VelocityChange);
+
+        rb.AddForce(
+            transform.TransformDirection(new Vector3(
+                drunkPushDirection.x,
+                drunkPushDirection.y,
+                0f
+            )) * drunkVelocityPushPerHit * Mathf.Lerp(0.8f, 1.5f, hitRatio),
+            ForceMode.VelocityChange
+        );
     }
 
     public void AddBatteryCharge(int amount)
@@ -351,6 +385,7 @@ public class DroneMovementRacingDrone : MonoBehaviour
         if (!DroneRacingRuntimeSettings.DamageEnabled)
         {
             drunkTimer = 0f;
+            drunkPushTimer = 0f;
             return;
         }
 
@@ -385,6 +420,7 @@ public class DroneMovementRacingDrone : MonoBehaviour
         delayedInput = Vector2.zero;
         isDashing = false;
         dashTimer = 0f;
+        drunkPushTimer = 0f;
 
         onDroneDisabled?.Invoke();
 
