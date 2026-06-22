@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JetPack.unity
     guid: f281001e28c300f4d8466447ce87d5dc
+  - enabled: 1
+    path: Assets/Scenes/ColorMemory.unity
+    guid: 972d4c02b51873347a1d76aae3bfbe1f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
