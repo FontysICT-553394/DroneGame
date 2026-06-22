@@ -2,19 +2,29 @@ using UnityEngine;
 
 public class BackgroundLooper : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 4f;
-    [SerializeField] private float resetXPosition = -20f;
-    [SerializeField] private float startXPosition = 20f;
+    [SerializeField] private float speedMultiplier = 0.5f;
+    [SerializeField] private float backgroundWidth = 23.75f;
+    [SerializeField] private float leftResetX = -23.75f;
 
-    void Update()
+    private void Update()
     {
-        transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-
-        if (transform.position.x <= resetXPosition)
+        if (GameManager.Instance != null && !GameManager.Instance.GameRunning)
         {
-            Vector3 newPosition = transform.position;
-            newPosition.x = startXPosition;
-            transform.position = newPosition;
+            return;
+        }
+
+        float speed = 4f;
+
+        if (GameManager.Instance != null)
+        {
+            speed = GameManager.Instance.GameSpeed * speedMultiplier;
+        }
+
+        transform.position += Vector3.left * speed * Time.deltaTime;
+
+        if (transform.position.x <= leftResetX)
+        {
+            transform.position += Vector3.right * backgroundWidth * 2f;
         }
     }
 }

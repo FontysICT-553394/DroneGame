@@ -1,17 +1,23 @@
 using UnityEngine;
 
-using UnityEngine;
-
 public class RocketMovement : MonoBehaviour
 {
-    [SerializeField] private float speedMultiplier = 2.2f;
-    [SerializeField] private float destroyXPosition = -20f;
+    [SerializeField] private float speedMultiplier = 2.6f;
+    [SerializeField] private float destroyXPosition = -25f;
 
-    void Update()
+    private void Update()
     {
-        if (GameManager.Instance != null && !GameManager.Instance.GameRunning) return;
+        if (GameManager.Instance != null && !GameManager.Instance.GameRunning)
+        {
+            return;
+        }
 
-        float speed = GameManager.Instance.GameSpeed * speedMultiplier;
+        float speed = 8f;
+
+        if (GameManager.Instance != null)
+        {
+            speed = GameManager.Instance.GameSpeed * speedMultiplier;
+        }
 
         transform.position += Vector3.left * speed * Time.deltaTime;
 
